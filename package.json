@@ -1,0 +1,24 @@
+{
+  "name": "bprkredit",
+  "version": "1.0.0",
+  "description": "app analisa kelayakan pinjaman kredit usaha dengan spk metode wp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "spk",
+    "wp"
+  ],
+  "author": "ocph23@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "@uirouter/angularjs": "^1.0.22",
+    "angular": "^1.7.8",
+    "angular-datatables": "^0.6.2",
+    "angular-route": "1.7.8",
+    "datatables.net-bs4": "^1.10.19",
+    "mdbootstrap": "^4.8.5",
+    "swangular": "^1.4.3"
+  }
+}

@@ -1,0 +1,22 @@
+angular.module("app",
+[
+    "app.router",
+    "datatables",
+    "swangular",
+    "message.service",
+    
+    "auth.service",
+    "storage.services",
+    "persyaratan.service",
+    "kriteria.service","debitur.service",
+
+    "app.conponent",
+
+    "auth.controller",
+    "cs.controller",
+    "ao.controller",
+    
+
+])
+
+;
