@@ -10,10 +10,10 @@ angular
 
 function CsController(AuthService, $state) {
   var thisRole = "CustomerService";
-  if (!AuthService.userIsLogin() && !AuthService.userInRole(this.thisRole))
+  if (!AuthService.userIsLogin() || !AuthService.userInRole(thisRole))
+   {
     $state.go("login");
-
-
+   }
 }
 
 function CsHomeController() { }

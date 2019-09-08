@@ -93,6 +93,14 @@ angular.module("app.router", ["ui.router"])
             templateUrl:'../apps/views/ao/ao-debitur.html'
         })
 
+        .state("ao-detail-debitur",{
+            url: '/detail-debitur/{id}',
+            parent:'AnalystOfficer',
+            controller:"ao-detail-debitur-controller",
+            templateUrl: '../apps/views/ao/ao-detail-debitur.html'
+        })
+
+
         
         .state('about', {
             // we'll get to this in a bit       

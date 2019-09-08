@@ -1,6 +1,7 @@
 angular.module("ao.controller",[])
 .controller("ao-home-controller",AoHomeController)
 .controller("ao-debitur-controller",AoDebiturController)
+.controller("ao-detail-debitur-controller",AoDetailDebiturController)
 
 
 
@@ -8,10 +9,12 @@ angular.module("ao.controller",[])
 
 
 
-function AoHomeController(){
+function AoHomeController($scope,AuthService,$state){
   var thisRole = "AnalystOfficer";
-  if (!AuthService.userIsLogin() && ! AuthService.userInRole(this.thisRole))
+  if (!AuthService.userIsLogin() || !AuthService.userInRole(thisRole))
+   {
     $state.go("login");
+   }
 }
 
 function AoDebiturController($scope,DebiturService,message){
@@ -50,4 +53,29 @@ function AoDebiturController($scope,DebiturService,message){
         cancel => {}
       );
     };
+}
+
+
+
+function AoDetailDebiturController($scope, $stateParams, $state, DebiturService, message) {
+  var id = $stateParams.id;
+  $('#datepicker').datepicker({
+    weekStart: 1,
+    format: 'dd/mm/yyyy',
+    daysOfWeekHighlighted: "6,0",
+    autoclose: true,
+    todayHighlight: true,
+  });
+
+  DebiturService.getById(id).then(x => {
+    $scope.model = x;
+    $('label').addClass('active');
+  });
+
+  $scope.save = function (data) {
+    DebiturService.put(data).then(x => {
+      message.info("Data Berhasil Diubah");
+      $state.go("cs-debitur");
+    });
+  };
 }

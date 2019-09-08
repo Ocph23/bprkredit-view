@@ -19,12 +19,12 @@
     <tr ng-repeat="data in datas">
       <td>{{ $index + 1 }}</td>
       <td>{{ data.nama }}</td>
-      <td>{{ data.tempatLahir}}, {{data.tanggalLahir}}</td>
+      <td>{{ data.tempatLahir}}, {{data.tanggalLahir|date:'dd-mm-yyyy'}}</td>
       <td>{{ data.telepon }}</td>
       <td>{{ data.pekerjaan }}</td>
       <td>{{ data.alamat }}</td>
       <th>
-        <a ui-sref="cs-edit-debitur({id: data.iddebitur})">Edit</a> | <a ng-click="delete(data)">Delete</a>
+        <a ui-sref="ao-detail-debitur({id: data.iddebitur})">Detail</a>
       </th>
     </tr>
   </tbody>
