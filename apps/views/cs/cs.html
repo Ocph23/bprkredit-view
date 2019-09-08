@@ -7,14 +7,8 @@
     </div>
     <ul class="list-unstyled components">
       <li>
-        <a
-          href="javascript:;"
-          data-toggle="collapse"
-          aria-expanded="false"
-          data-target="#homeSubmenu"
-          class="dropdown-toggle"
-          >Home</a
-        >
+        <a href="javascript:;" data-toggle="collapse" aria-expanded="false" data-target="#homeSubmenu"
+          class="dropdown-toggle">Home</a>
         <ul class="collapse list-unstyled" id="homeSubmenu">
           <li>
             <a href="/Home">Home</a>
@@ -28,14 +22,8 @@
         </ul>
       </li>
       <li>
-        <a
-          href="javascript:;"
-          data-toggle="collapse"
-          aria-expanded="false"
-          data-target="#master"
-          class="dropdown-toggle"
-          >Master</a
-        >
+        <a href="javascript:;" data-toggle="collapse" aria-expanded="false" data-target="#master"
+          class="dropdown-toggle">Master</a>
         <ul class="collapse list-unstyled" id="master">
           <li>
             <a ui-sref="cs-persyaratan">Persyaratan</a>
@@ -46,14 +34,8 @@
         </ul>
       </li>
       <li>
-        <a
-          href="javascript:;"
-          data-toggle="collapse"
-          aria-expanded="false"
-          data-target="#debiture"
-          class="dropdown-toggle"
-          >Debitur</a
-        >
+        <a href="javascript:;" data-toggle="collapse" aria-expanded="false" data-target="#debiture"
+          class="dropdown-toggle">Debitur</a>
         <ul class="collapse list-unstyled" id="debiture">
           <li>
             <a ui-sref="cs-new-debitur">Baru</a>
@@ -75,13 +57,17 @@
 
   <!-- Page Content Holder -->
   <div id="content">
-    <nav class="mb-1 navbar navbar-expand-lg navbar-dark">
-      <button type="button" id="sidebarCollapse" class="navbar-btn">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </nav>
+    <div class="content-header">
+      <nav class="mb-1 navbar navbar-dark">
+        <button type="button" id="sidebarCollapse" class="navbar-btn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <userlogin class="user-login"></userlogin>
+      </nav>
+    </div>
+
     <div class="card" style="margin:10px">
       <div class="card-body" style="min-height: 95vh">
         <ui-view></ui-view>
@@ -91,8 +77,8 @@
 </div>
 
 <script type="text/javascript">
-  $(document).ready(function() {
-    $("#sidebarCollapse").on("click", function() {
+  $(document).ready(function () {
+    $("#sidebarCollapse").on("click", function () {
       $("#sidebar").toggleClass("active");
       $(this).toggleClass("active");
     });

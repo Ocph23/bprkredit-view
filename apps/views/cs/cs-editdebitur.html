@@ -3,19 +3,20 @@
     <div class="title">
       Calon Debitur
     </div>
+
     <form ng-submit="save(model)">
       <div class="row">
         <div class="col-md-6 kiri">
-          <div class="md-form">
-            <label>Nama</label>
-            <input type="text" class="form-control" ng-model="model.nama" required />
-          </div>
+            <div class="md-form">
+                <input ng-model="model.nama" type="text" id="inputPrefilledEx" class="form-control">
+                <label for="inputPrefilledEx">Example label</label>
+              </div>
           <div class="md-form">
             <label>Nomor Identitas</label>
             <input type="text" class="form-control" ng-model="model.NoIdentitas" required />
           </div>
           <div class="md-form">
-            <label>Tempat Lahir</label>
+            <label class="active">Tempat Lahir</label>
             <input type="text" class="form-control" ng-model="model.tempatLahir" required />
           </div>
           <div class="md-form">
@@ -47,7 +48,7 @@
           </div>
           <div class="md-form">
             <label>Pekerjaan Istri/Suami</label>
-            <input type="text" class="form-control" ng-model="model.pekerjaanPasaan" required />
+            <input type="text" class="form-control" ng-model="model.pekerjaanPasangan" required />
           </div>
           <h6>Data Usaha</h6>
           <div class="md-form">
@@ -64,9 +65,10 @@
           </div>
           <div class="md-form">
             <label>Tujuan Pengajuan Kredit</label>
-            <textarea class="md-textarea form-control" ng-model="model.tujuanPengajuanKredit" aria-label="With textarea"></textarea>
+            <textarea class="md-textarea form-control" ng-model="model.tujuanPengajuanKredit"
+              aria-label="With textarea"></textarea>
           </div>
-        
+
         </div>
       </div>
       <div class="row pull-right">

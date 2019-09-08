@@ -1,0 +1,72 @@
+<h4>DAFTAR DEBITUR</h4>
+<div>
+  <a ui-sref="cs-new-debitur" id="plusIcon" class="btn-floating z-depth-1-half btn-default"><i class="fa fa-plus"></i></a>
+</div>
+
+<table class="table table-striped" cellspacing="0" width="100%" datatable="ng">
+  <thead>
+    <tr>
+      <th>NO</th>
+      <th>Nama</th>
+      <th>TTL</th>
+      <th>Telepon</th>
+      <th>Pekerjaan</th>
+      <th>Alamat</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="data in datas">
+      <td>{{ $index + 1 }}</td>
+      <td>{{ data.nama }}</td>
+      <td>{{ data.tempatLahir}}, {{data.tanggalLahir}}</td>
+      <td>{{ data.telepon }}</td>
+      <td>{{ data.pekerjaan }}</td>
+      <td>{{ data.alamat }}</td>
+      <th>
+        <a ui-sref="cs-edit-debitur({id: data.iddebitur})">Edit</a> | <a ng-click="delete(data)">Delete</a>
+      </th>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" data-backdrop="false" id="basicExampleModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-default">
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Kriteria</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form style="margin-left: 10px;margin-right:10px;" ng-submit="save(model)">
+          <div class="md-form">
+            <label>nama kriteria</label>
+            <input type="text" class="form-control" ng-model="model.namaKriteria" required />
+          </div>
+          <div class="md-form">
+            <label>deskripsi</label>
+            <textarea class="md-textarea form-control" ng-model="model.deskripsi" aria-label="With textarea"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Batal
+            </button>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  #plusIcon {
+    right: 0px;
+    position: absolute;
+    right: 20px;
+  }
+</style>

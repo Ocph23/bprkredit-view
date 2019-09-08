@@ -9,8 +9,10 @@ function DebiturService(AuthService,$q, $http, message){
 
     var service={};
     service.instance=false;
-    service.datas=[{iddebitur:1, nama:"Rahmat Alan",pekerjaan:"swasta", lamaTinggal: "1 tahun", tempatLahir:"Jayapura", tanggalLahir:new Date(),alamat:"Jln. Ardipura No 23 \rn Jayapura", 
-    telepon:"081481145",namaPasangan:"Evy", pekerjaanPasangan:"swasta", namaPerusahaan:"CV. Trireksa Papua Cargo", statusUsaha:"Sendri" }];
+    service.datas=[{iddebitur:1, nama:"Rahmat Alan",pekerjaan:"swasta", lamaTinggal: "1 tahun", tempatLahir:"Jayapura", 
+    tanggalLahir:new Date(),alamat:"Jln. Ardipura No 23 \rn Jayapura", 
+    telepon:"081481145",namaPasangan:"Evy", pekerjaanPasangan:"swasta",
+     namaPerusahaan:"CV. Trireksa Papua Cargo", statusUsaha:"Sendri" }];
 
     getData();
 

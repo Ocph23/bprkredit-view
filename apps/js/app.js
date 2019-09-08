@@ -8,7 +8,8 @@ angular.module("app",
     "auth.service",
     "storage.services",
     "persyaratan.service",
-    "kriteria.service","debitur.service",
+    "kriteria.service",
+    "debitur.service","helper.service",
 
     "app.conponent",
 

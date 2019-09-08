@@ -1,28 +1,47 @@
-angular.module("storage.services", [])
+angular.module("storage.services", ['LocalStorageModule'])
+.config(function (localStorageServiceProvider) {
+  localStorageServiceProvider
+    .setPrefix('storage.services')
+    .setStorageType('localStorage');
+})
 .factory("StorageService", StorageService);
 
-function StorageService() {
-  localStorageSupported=false;
-  this.localStorageSupported =
-    typeof window["localStorage"] !== "undefined" &&
-    window["localStorage"] != null;
+function StorageService(localStorageService) {
+  var localStorageSupported=false;
+  var localStorage = localStorageService;
+  if(localStorageService.isSupported) {
+    localStorageSupported=true;
+  }
+  
+
+
+    return {
+      add: add,
+      addObject: addObject,
+      get: get,
+      getObject: getObject,
+      getAllItems: getAllItems,
+      getAllValues: getAllValues,
+      remove: remove,
+      clear: clear
+    };
 
   // add value to storage
   function add(key, item) {
-    if (this.localStorageSupported) {
-      localStorage.setItem(key, item);
+    if (localStorageSupported) {
+      localStorage.set(key, item);
     }
   }
 
   function addObject(key, data) {
     const jsonData = JSON.stringify(data);
-    if (this.localStorageSupported) {
-      localStorage.setItem(key, jsonData);
+    if (localStorageSupported) {
+      localStorage.set(key, jsonData);
     }
   }
 
   function getObject(key) {
-    const item = localStorage.getItem(key);
+    const item = localStorage.get(key);
     return JSON.parse(item);
   }
 
@@ -32,7 +51,7 @@ function StorageService() {
 
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
-      const value = localStorage.getItem(key);
+      const value = localStorage.get(key);
 
       list.push(
         new StorageItem({
@@ -61,7 +80,7 @@ function StorageService() {
 
   // get one item by key from storage
   function get(key) {
-    if (this.localStorageSupported) {
+    if (localStorageSupported) {
       const item = localStorage.getItem(key);
       return item;
     } else {
@@ -71,26 +90,17 @@ function StorageService() {
 
   // remove value from storage
   function remove(key) {
-    if (this.localStorageSupported) {
+    if (localStorageSupported) {
       localStorage.removeItem(key);
     }
   }
 
   // clear storage (remove all items from it)
   function clear() {
-    if (this.localStorageSupported) {
-      localStorage.clear();
+    if (localStorageSupported) {
+      localStorage.clearAll();
     }
   }
 
-  return {
-    add: add,
-    addObject: addObject,
-    get: get,
-    getObject: getObject,
-    getAllItems: getAllItems,
-    getAllValues: getAllValues,
-    remove: remove,
-    clear: clear
-  };
+  
 }

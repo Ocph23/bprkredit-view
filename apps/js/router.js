@@ -23,7 +23,7 @@ angular.module("app.router", ["ui.router"])
 
         //cs
 
-        .state("cs",{
+        .state("CustomerService",{
             url: '/cs',
             controller:"cs-controller",
             templateUrl: '../apps/views/cs/cs.html'
@@ -31,62 +31,69 @@ angular.module("app.router", ["ui.router"])
 
         .state("cs-home",{
             url: '/home',
-            parent:'cs',
+            parent:'CustomerService',
             controller:"cs-home-controller",
-            templateUrl: '../apps/views/cs/home.html'
+            templateUrl: '../apps/views/cs/cs-home.html'
         })
 
         .state("cs-debitur",{
             url: '/debitur',
-            parent:'cs',
+            parent:'CustomerService',
             controller:"cs-debitur-controller",
-            templateUrl: '../apps/views/cs/debitur.html'
+            templateUrl: '../apps/views/cs/cs-debitur.html'
         })
 
         .state("cs-new-debitur",{
             url: '/new-debitur',
-            parent:'cs',
+            parent:'CustomerService',
             controller:"cs-new-debitur-controller",
-            templateUrl: '../apps/views/cs/newdebitur.html'
+            templateUrl: '../apps/views/cs/cs-newdebitur.html'
         })
         .state("cs-edit-debitur",{
             url: '/edit-debitur/{id}',
-            parent:'cs',
+            parent:'CustomerService',
             controller:"cs-edit-debitur-controller",
-            templateUrl: '../apps/views/cs/editdebitur.html'
+            templateUrl: '../apps/views/cs/cs-editdebitur.html'
         })
 
 
         .state("cs-kriteria",{
             url: '/kriteria',
-            parent:'cs',
+            parent:'CustomerService',
             controller:"cs-kritera-controller",
-            templateUrl: '../apps/views/cs/kriteria.html'
+            templateUrl: '../apps/views/cs/cs-kriteria.html'
         })
 
         .state("cs-persyaratan",{
             url: '/persyaratan',
-            parent:'cs',
+            parent:'CustomerService',
             controller:"cs-persyaratan-controller",
-            templateUrl: '../apps/views/cs/persyaratan.html'
+            templateUrl: '../apps/views/cs/cs-persyaratan.html'
         })
 
 
 
         //ao
 
-        .state("ao",{
+        .state("AnalystOfficer",{
             url:"/ao",
             controller:"ao-home-controller",
-            template:'Test AO <ui-view></ui-view>'
+            templateUrl: '../apps/views/ao/ao.html'
         })
         .state("ao-home",{
-            parent:"ao",
+            parent:"AnalystOfficer",
             url:"/home",
             controller:"ao-home-controller",
-            templateUrl:'../apps/views/ao-home.html'
+            templateUrl:'../apps/views/ao/ao-home.html'
+        })
+        .state("ao-debitur",{
+            parent:"AnalystOfficer",
+            url:"/debitur",
+            controller:"ao-debitur-controller",
+            templateUrl:'../apps/views/ao/ao-debitur.html'
         })
 
+        
         .state('about', {
             // we'll get to this in a bit       
         });

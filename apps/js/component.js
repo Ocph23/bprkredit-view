@@ -1,25 +1,15 @@
 angular
   .module("app.conponent", [])
 
-  .component("pagination", {
-    bindings: {
-      currentPage:"@",
-      pageSize:"@",
-      data:"="
-    },
+  .component("userlogin", {
+    controller: function ($scope, AuthService) {
+      this.userName = AuthService.getUserName();
+      $scope.logoff = function () {
+        AuthService.logoff();
+      }
 
-    controller: function() {
-      numberOfPages = function() {
-        return Math.ceil($scope.data.length / $scope.pageSize);
-      };
     },
-    template: `
-    <button ng-disabled="currentPage == 0" ng-click="$ctrl.currentPage=$ctrl.currentPage-1">
-    Previous
-</button>
-{{$ctrl.currentPage+1}}/{{$ctrl.numberOfPages()}}
-<button ng-disabled="$ctrl.currentPage >= data.length/$ctrl.pageSize - 1" ng-click="$ctrl.currentPage=$ctrl.currentPage+1">
-    Next
-</button>
+    template: `{{$ctrl.userName}}
+    <span>| <a ng-click="logoff()">Log Off</a></span>
     `
   });

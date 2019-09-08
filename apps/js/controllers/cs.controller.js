@@ -8,28 +8,42 @@ angular
   .controller("cs-edit-debitur-controller", CsEditDebiturController)
   .controller("cs-controller", CsController);
 
-function CsController() {}
+function CsController(AuthService, $state) {
+  var thisRole = "CustomerService";
+  if (!AuthService.userIsLogin() && !AuthService.userInRole(this.thisRole))
+    $state.go("login");
 
-function CsHomeController() {}
 
-function CsEditDebiturController($scope, $stateParams, DebiturService) {
+}
+
+function CsHomeController() { }
+
+function CsEditDebiturController($scope, $stateParams, $state, DebiturService, message) {
   var id = $stateParams.id;
+  $('#datepicker').datepicker({
+    weekStart: 1,
+    format: 'dd/mm/yyyy',
+    daysOfWeekHighlighted: "6,0",
+    autoclose: true,
+    todayHighlight: true,
+  });
 
   DebiturService.getById(id).then(x => {
     $scope.model = x;
-    $('#datepicker').datepicker({
-      weekStart: 1,
-      daysOfWeekHighlighted: "6,0",
-      autoclose: true,
-      todayHighlight: true,
+    $('label').addClass('active');
   });
-  $('#datepicker').datepicker("setDate", new Date());
-  });
+
+  $scope.save = function (data) {
+    DebiturService.put(data).then(x => {
+      message.info("Data Berhasil Diubah");
+      $state.go("cs-debitur");
+    });
+  };
 }
 
 function CsNewDebiturController($scope, DebiturService, message, $state) {
   $scope.model = {};
-  $scope.Init = function() {
+  $scope.Init = function () {
     $("#datepicker").datepicker({
       weekStart: 1,
       daysOfWeekHighlighted: "6,0",
@@ -39,7 +53,9 @@ function CsNewDebiturController($scope, DebiturService, message, $state) {
     $("#datepicker").datepicker("setDate", new Date());
   };
 
-  $scope.save = function(data) {
+
+
+  $scope.save = function (data) {
     DebiturService.post(data).then(x => {
       message.dialog("Tambah Baru").then(
         x => {
@@ -53,17 +69,21 @@ function CsNewDebiturController($scope, DebiturService, message, $state) {
   };
 }
 
-function CsDebiturController($scope, DebiturService, message, $state) {
+function CsDebiturController($scope, DebiturService, message, $state, AuthService) {
+
+
+
   $scope.model = {};
   DebiturService.get().then(x => {
     $scope.datas = x;
+
   });
 
-  $scope.edit = function(data) {
+  $scope.edit = function (data) {
     $scope.model = data;
   };
 
-  $scope.save = function(data) {
+  $scope.save = function (data) {
     if (data.idPersyaratan == undefined) {
       DebiturService.post(data).then(x => {
         $("#basicExampleModal").modal("hide");
@@ -79,14 +99,14 @@ function CsDebiturController($scope, DebiturService, message, $state) {
     $scope.model = {};
   };
 
-  $scope.delete = function(data) {
+  $scope.delete = function (data) {
     message.dialog("Hapus Data ...", "OK").then(
       x => {
         DebiturService.remove(data).then(z => {
           message.info("Berhasil Dihapus");
         });
       },
-      cancel => {}
+      cancel => { }
     );
   };
 }
@@ -97,11 +117,11 @@ function CsKriteraController($scope, KriteriaService, swangular, message) {
     $scope.datas = x;
   });
 
-  $scope.edit = function(data) {
+  $scope.edit = function (data) {
     $scope.model = data;
   };
 
-  $scope.save = function(data) {
+  $scope.save = function (data) {
     if (data.idPersyaratan == undefined) {
       KriteriaService.post(data).then(x => {
         $("#basicExampleModal").modal("hide");
@@ -125,14 +145,14 @@ function CsKriteraController($scope, KriteriaService, swangular, message) {
     $scope.model = {};
   };
 
-  $scope.delete = function(data) {
+  $scope.delete = function (data) {
     message.dialog("Hapus Data ...", "OK").then(
       x => {
         KriteriaService.remove(data).then(z => {
           message.info("Berhasil Dihapus");
         });
       },
-      cancel => {}
+      cancel => { }
     );
   };
 }
@@ -148,11 +168,11 @@ function CsPersyaratanController(
     $scope.datas = x;
   });
 
-  $scope.edit = function(data) {
+  $scope.edit = function (data) {
     $scope.model = data;
   };
 
-  $scope.save = function(data) {
+  $scope.save = function (data) {
     if (data.idPersyaratan == undefined) {
       PersyaratanService.post(data).then(x => {
         $("#basicExampleModal").modal("hide");
@@ -176,14 +196,14 @@ function CsPersyaratanController(
     $scope.model = {};
   };
 
-  $scope.delete = function(data) {
+  $scope.delete = function (data) {
     message.dialog("Hapus Data ...", "OK").then(
       x => {
         PersyaratanService.remove(data).then(z => {
           message.info("Berhasil Dihapus");
         });
       },
-      cancel => {}
+      cancel => { }
     );
   };
 }

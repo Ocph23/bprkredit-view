@@ -1,0 +1,74 @@
+<div class="wrapper" id="wr">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+          <div class="sidebar-header">
+            <h3>BPR KREDIT</h3>
+            <div style="font-size:12px"></div>
+          </div>
+          <ul class="list-unstyled components">
+            <li>
+              <a href="javascript:;" data-toggle="collapse" aria-expanded="false" data-target="#homeSubmenu"
+                class="dropdown-toggle">Home</a>
+              <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li>
+                  <a href="/Home">Home</a>
+                </li>
+                <li>
+                  <a href="/Home/About">About</a>
+                </li>
+                <li>
+                  <a href="/Home/Contact">Contact</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="javascript:;" data-toggle="collapse" aria-expanded="false" data-target="#debiture"
+                class="dropdown-toggle">Debitur</a>
+              <ul class="collapse list-unstyled" id="debiture">
+                <li>
+                  <a ui-sref="cs-new-debitur">Baru</a>
+                </li>
+                <li>
+                  <a ui-sref="cs-debitur">Data</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="list-unstyled CTAs">
+            <li>
+              <footer>
+                <p>&copy; 2019 - ocph23</p>
+              </footer>
+            </li>
+          </ul>
+        </nav>
+      
+        <!-- Page Content Holder -->
+        <div id="content">
+          <div class="content-header">
+            <nav class="mb-1 navbar navbar-dark">
+              <button type="button" id="sidebarCollapse" class="navbar-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+              <userlogin class="user-login"></userlogin>
+            </nav>
+          </div>
+      
+          <div class="card" style="margin:10px">
+            <div class="card-body" style="min-height: 95vh">
+              <ui-view></ui-view>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <script type="text/javascript">
+        $(document).ready(function () {
+          $("#sidebarCollapse").on("click", function () {
+            $("#sidebar").toggleClass("active");
+            $(this).toggleClass("active");
+          });
+        });
+      </script>
