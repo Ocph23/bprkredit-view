@@ -14,15 +14,13 @@
     <tr>
       <th>NO</th>
       <th>Nama Persyaratan</th>
-      <th>Deskripsi</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="data in datas">
       <td>{{ $index + 1 }}</td>
-      <td>{{ data.namaPersyaratan }}</td>
-      <td>{{ data.deskripsi }}</td>
+      <td>{{ data.nama }}</td>
       <th>
         <a ng-click="edit(data)"   data-toggle="modal" data-target="#basicExampleModal">Edit</a> | <a ng-click="delete(data)">Delete</a>
       </th>
@@ -44,7 +42,7 @@
     <div class="modal-content">
       <div class="modal-header text-default">
         <h5 class="modal-title" id="exampleModalLabel">Tambah Pesyaratan</h5>
-        <button
+        <button ng-disabled="saveSpin"
           type="button"
           class="close"
           data-dismiss="modal"
@@ -56,25 +54,18 @@
       <div class="modal-body">
         <form
           style="margin-left: 10px;margin-right:10px;"
-          ng-submit="save(model)"
+          ng-submit="save(model);saveSpin=true;"
         >
           <div class="md-form">
             <label>nama persyaratan</label>
             <input
               type="text"
               class="form-control"
-              ng-model="model.namaPersyaratan"
+              ng-model="model.nama"
               required
             />
           </div>
-          <div class="md-form">
-            <label>deskripsi</label>
-            <textarea
-              class="md-textarea form-control"
-              ng-model="model.deskripsi"
-              aria-label="With textarea"
-            ></textarea>
-          </div>
+         
           <div class="modal-footer">
             <button
               type="button"
@@ -83,7 +74,7 @@
             >
               Batal
             </button>
-            <button type="submit" class="btn btn-primary">Simpan</button>
+            <button type="submit" class="btn btn-primary">Simpan <i ng-show="saveSpin" class="fa fa-spinner fa-spin fa-2x"></i></button>
           </div>
         </form>
       </div>

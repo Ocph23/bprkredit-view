@@ -9,11 +9,12 @@ angular
   .controller("cs-controller", CsController);
 
 function CsController(AuthService, $state) {
-  var thisRole = "CustomerService";
+  var thisRole = "Admin";
   if (!AuthService.userIsLogin() || !AuthService.userInRole(thisRole))
    {
     $state.go("login");
    }
+   
 }
 
 function CsHomeController() { }
@@ -52,7 +53,6 @@ function CsNewDebiturController($scope, DebiturService, message, $state) {
     });
     $("#datepicker").datepicker("setDate", new Date());
   };
-
 
 
   $scope.save = function (data) {
@@ -122,14 +122,19 @@ function CsKriteraController($scope, KriteriaService, swangular, message) {
   };
 
   $scope.save = function (data) {
-    if (data.idPersyaratan == undefined) {
+    if (data.idkriteria == undefined) {
       KriteriaService.post(data).then(x => {
         $("#basicExampleModal").modal("hide");
         swangular.swal({
           title: "Sukses",
           text: "Data Berhasil Ditambah",
           type: "info"
+        },err=>{
+          $scope.saveSpin=false;
         });
+
+        $scope.saveSpin=false;
+        $scope.model = {};
       });
     } else {
       KriteriaService.put(data).then(x => {
@@ -138,22 +143,21 @@ function CsKriteraController($scope, KriteriaService, swangular, message) {
           title: "Sukses",
           text: "Data Berhasil Diubah",
           type: "info"
+        },err=>{
+          $scope.saveSpin=false;
         });
+        $scope.saveSpin=false;
+        $scope.model = {};
       });
     }
 
-    $scope.model = {};
+   
   };
 
   $scope.delete = function (data) {
-    message.dialog("Hapus Data ...", "OK").then(
-      x => {
-        KriteriaService.remove(data).then(z => {
-          message.info("Berhasil Dihapus");
-        });
-      },
-      cancel => { }
-    );
+    KriteriaService.remove(data).then(z => {
+      message.info("Berhasil Dihapus");
+    });
   };
 }
 
@@ -167,13 +171,12 @@ function CsPersyaratanController(
   PersyaratanService.get().then(x => {
     $scope.datas = x;
   });
-
   $scope.edit = function (data) {
     $scope.model = data;
   };
 
   $scope.save = function (data) {
-    if (data.idPersyaratan == undefined) {
+    if (data.idpersyaratan == undefined) {
       PersyaratanService.post(data).then(x => {
         $("#basicExampleModal").modal("hide");
         swangular.swal({
@@ -181,7 +184,12 @@ function CsPersyaratanController(
           text: "Data Berhasil Ditambah",
           type: "info"
         });
+      },err=>{
+        $scope.saveSpin=false;
       });
+
+      $scope.saveSpin=false;
+      $scope.model = {};
     } else {
       PersyaratanService.put(data).then(x => {
         $("#basicExampleModal").modal("hide");
@@ -190,20 +198,19 @@ function CsPersyaratanController(
           text: "Data Berhasil Diubah",
           type: "info"
         });
+      },err=>{
+        $scope.saveSpin=false;
       });
+
+      $scope.saveSpin=false;
+      $scope.model = {};
     }
 
-    $scope.model = {};
   };
 
   $scope.delete = function (data) {
-    message.dialog("Hapus Data ...", "OK").then(
-      x => {
-        PersyaratanService.remove(data).then(z => {
-          message.info("Berhasil Dihapus");
-        });
-      },
-      cancel => { }
-    );
+    PersyaratanService.remove(data).then(z => {
+      message.info("Berhasil Dihapus");
+    });
   };
 }

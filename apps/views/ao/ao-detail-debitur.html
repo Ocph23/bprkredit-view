@@ -79,19 +79,28 @@
     </div>
 
     <div class="container">
-        <div class="title">
-           Penilaian
-        </div>
+       
         <div class="row">
             <div class="col-md-6 kiri">
-
+                <!-- Default unchecked -->
+                <h6>Persyaratan</h6>
+                <div class="custom-control custom-checkbox" ng-repeat="item in persyaratans">
+                    <input ng-model="item.value" type="checkbox" class="custom-control-input"
+                        id="{{item.idPersyaratan}}">
+                    <label class="custom-control-label" for="{{item.idPersyaratan}}">{{item.namaPersyaratan}}</label>
+                </div>
+                <!-- Default unchecked -->
             </div>
             <div class="col-md-6 kanan">
-                <div class="row pull-right">
-                    <button type="submit" class="btn btn-default pull-right">Simpan Penilaian</button>
-                </div>
+                    <h6>Penilaian</h6>
             </div>
         </div>
+    </div>
+
+    <div class="container">
+            <div class="footer">
+                    <button type="submit" class="btn btn-default pull-right">Simpan Penilaian</button>
+            </div>
     </div>
 </div>
 

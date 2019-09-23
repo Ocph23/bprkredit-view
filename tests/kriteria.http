@@ -1,0 +1,26 @@
+
+
+Post https://bprkredit.000webhostapp.com/api/Kriteria HTTP/1.1
+content-type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjgiLCJVc2VybmFtZSI6IkNhbmRyYSIsIkVtYWlsIjoiQ2FuZHJhQGdtYWlsLmNvbSIsIk5hbWEiOiJDYW5kcmEgUHV0cmEgV2lqYWtzYW5hIiwiUm9sZSI6IkFkbWluIiwidGltZSI6MTU2OTIzNjM3MH0.1kZWfy8uyv382xfPLRTxQltFp97o178VhGtNMOgueZM
+
+{
+    "namaKriteria":"KTP"
+}
+
+###
+
+
+Get https://bprkredit.000webhostapp.com/api/Kriteria HTTP/1.1
+content-type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjgiLCJVc2VybmFtZSI6IkNhbmRyYSIsIkVtYWlsIjoiQ2FuZHJhQGdtYWlsLmNvbSIsIk5hbWEiOiJDYW5kcmEgUHV0cmEgV2lqYWtzYW5hIiwiUm9sZSI6IkFkbWluIiwidGltZSI6MTU2OTIzNjM3MH0.1kZWfy8uyv382xfPLRTxQltFp97o178VhGtNMOgueZM
+
+###
+
+
+
+Delete https://bprkredit.000webhostapp.com/api/Kriteria HTTP/1.1
+content-type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjgiLCJVc2VybmFtZSI6IkNhbmRyYSIsIkVtYWlsIjoiQ2FuZHJhQGdtYWlsLmNvbSIsIk5hbWEiOiJDYW5kcmEgUHV0cmEgV2lqYWtzYW5hIiwiUm9sZSI6IkFkbWluIiwidGltZSI6MTU2OTIzNjM3MH0.1kZWfy8uyv382xfPLRTxQltFp97o178VhGtNMOgueZM
+
+###

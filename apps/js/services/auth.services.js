@@ -1,106 +1,162 @@
-angular.module("auth.service", [])
+angular
+  .module("auth.service", [])
 
-    .factory("AuthService", AuthService)
-
-
-    ;
-
-
-
+  .factory("AuthService", AuthService);
 
 function AuthService($http, $q, StorageService, $state, helperServices) {
+  var service = {};
+  service.me=null;
 
-    var service = {};
+  return {
+    login: login,
+    logoff: logoff,
+    userIsLogin: userIsLogin,
+    getUserName: getUserName,
+    userIsLogin: userIsLogin,
+    userInRole: userInRole,
+    getHeader: getHeader,
+    url: service.url,updatemitrauser:updatemitrauser,
+    registerMitraUser:registerMitraUser,
+    me:getMe
+  };
 
-    return {
-        login: login, logoff: logoff, userIsLogin: userIsLogin, getUserName: getUserName,
-        userIsLogin: userIsLogin, userInRole: userInRole,
-        getHeader: getHeader, url: service.url
-    }
+  function login(user) {
+    var def = $q.defer();
+    $http({
+      method: "POST",
+      url: helperServices.url + "/api/Users/Login",
+      headers: getHeader(),
+      data: user
+    }).then(
+      res => {
+        StorageService.addObject("user", res.data.data);
+        def.resolve(res.data.data);
+      },
+      err => {
+        helperServices.errorHandler(err);
+      }
+    );
 
-    function login(user) {
-        var def = $q.defer();
-        var a = helperServices.url;
-        var b = getHeader();
-        $http({
-            method: 'Get',
-            url: helperServices.url,
-            headers: getHeader()
-        }).then(res => {
-
-
-         }, err => { 
-
-            var user = {
-                "IdUser": "2",
-                "Username": "Kristt26",
-                "Email": "kristt26@gmail.com",
-                "Nama": "Candra Putra Wijaksana",
-                "Role": "AnalystOfficer",
-                //"Role": "CustomerService",
-                "Token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjIiLCJVc2VybmFtZSI6IktyaXN0dDI2IiwiRW1haWwiOiJrcmlzdHQyNkBnbWFpbC5jb20iLCJOYW1hIjoiQ2FuZHJhIFB1dHJhIFdpamFrc2FuYSIsIlJvbGUiOiJBZG1pbiIsInRpbWUiOjE1Njc5NTg0MjR9.D7k5f7QNrCgZvIBEy2jG3-F72IdbTDVfv0zACH4y7Lw"
-            }
-            StorageService.addObject("user", user);
-    
-            def.resolve(user);
-    
-         });
-     
-
-        return def.promise;
+    return def.promise;
+  }
 
 
-    }
-
-
-
-    function getHeader() {
-
-        try {
-            if (userIsLogin()) {
-                return {
-                    'Content-Type': 'json/application',
-                    'Authorization': 'Bearer ' + getToken()
-                }
-            }
-            throw new Error("Not Found Token");
-        } catch  {
-            return {
-                'Content-Type': 'json/application'
-            }
+  function getMe() {
+    var def = $q.defer();
+    if(service.me)
+    {
+      def.resolve(service.me);
+    }else{
+      $http({
+        method: "Get",
+        url: helperServices.url + "/api/auth/me",
+        headers: getHeader()
+      }).then(
+        res => {
+          service.me=res.data;
+          def.resolve(service.me);
+        },
+        err => {
+          helperServices.errorHandler(err);
         }
+      );
     }
+    return def.promise;
+  }
 
-    function logoff() {
-        StorageService.clear();
-        $state.go("login");
+  function getHeader() {
+    try {
+      if (userIsLogin()) {
+        var token = getToken();
 
+        return {
+          "Content-Type": "application/json",
+          Authorization: getToken()
+        };
+      } else {
+        return {
+          "Content-Type": "application/json"
+        };
+      }
+    } catch {
+      return {
+        "Content-Type": "application/json"
+      };
     }
+  }
 
-    function getUserName() {
-        if (userIsLogin) {
-            var result = StorageService.getObject("user");
-            return result.Username;
-        }
+  function logoff() {
+    StorageService.clear();
+    $state.go("login");
+  }
+
+  function getUserName() {
+    if (userIsLogin) {
+      var result = StorageService.getObject("user");
+      return result.Username;
     }
+  }
 
-    function userIsLogin() {
-        var result = StorageService.getObject("user");
-        if (result) {
-            return true;
-        }
-        return false;
+  function userIsLogin() {
+    var result = StorageService.getObject("user");
+    if (result) {
+      return true;
+    } else {
+      return false;
     }
+  }
 
-    function userInRole(role) {
-        var result = StorageService.getObject("user");
-        if (result && result.Role==role) {
-
-            return true;
-        }
-        return false;
+  function userInRole(role) {
+    var result = StorageService.getObject("user");
+    if (result && result.Role===role) {
+      return true;
     }
+  }
+
+  function getToken() {
+    var result = StorageService.getObject("user");
+    if (result && result.Token) {
+      return result.Token;
+    }
+  }
 
 
+  function updatemitrauser(model){
+    var def = $q.defer();
+    $http({
+      method: "Put",
+      url: helperServices.url + "/api/auth/updatemitrauser/"+model.idUserMitraBayar,
+      headers: getHeader(),
+      data: model
+    }).then(
+      data => {
+        def.resolve(data);
+      },
+      err => {
+        helperServices.errorHandler(err);
+        model.status=!model.status;
+      }
+    );
+    return def.promise;
+  }
 
+  function registerMitraUser(model) {
+    var def = $q.defer();
+    $http({
+      method: "POST",
+      url: helperServices.url + "/api/auth/addmitrauser",
+      headers: getHeader(),
+      data: model
+    }).then(
+      data => {
+        def.resolve(data);
+      },
+      err => {
+        helperServices.errorHandler(err);
+      }
+    );
+
+    return def.promise;
+
+  }
 }

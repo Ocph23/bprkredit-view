@@ -1,0 +1,9 @@
+Post http://testing.stimiksepnop.ac.id/api/Users/Login HTTP/1.1
+content-type: application/json
+
+{
+    "Username":"Candra",
+    "Password":"123456"
+}
+
+###

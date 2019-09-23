@@ -1,25 +1,48 @@
 angular.module("message.service", []).factory("message", MessageServices);
 
-function MessageServices(swangular, $q) {
-  return { info: info, error: error, warning: warning, dialog: dialog };
+function MessageServices(swangular, $q,$http) {
+  return {
+    info: info,
+    error: error,
+    warning: warning,
+    dialog: dialog,
+    dialogDelete:dialogDelete
+  };
 
-  function info(params) {
+  function info(params, titleParam) {
+    const title = !titleParam ?
+      "Sukses" :
+      Number.isInteger(titleParam) ?
+      '"' + titleParam + '"' :
+      titleParam;
+
     swangular.swal({
-      title: "Sukses",
+      title: title,
       text: params,
       type: "info"
     });
   }
 
-  function error(params) {
+  function error(params, titleParam) {
+    const title = !titleParam ?
+      "Error" :
+      Number.isInteger(titleParam) ?
+      '"' + titleParam + '"' :
+      titleParam;
+
     swangular.swal({
-      title: "Error",
+      title: title,
       text: params,
       type: "error"
     });
   }
 
-  function warning(params) {
+  function warning(params, titleParam) {
+    const title = !titleParam ?
+      "Sukses" :
+      Number.isInteger(titleParam) ?
+      '"' + titleParam + '"' :
+      titleParam;
     swangular.swal({
       title: "Sukses",
       text: params,
@@ -52,6 +75,46 @@ function MessageServices(swangular, $q) {
         } else {
           def.reject(result.value);
         }
+      });
+
+    return def.promise;
+  }
+
+
+
+  
+  function dialogDelete(messageText, url, header) {
+    var def = $q.defer();
+    var yesText = "Ya";
+    var cancelText = "Batal";
+    swangular
+      .swal({
+        title: 'Delete',
+        text: messageText,
+        inputAttributes: {
+          autocapitalize: 'off'
+        },
+        showCancelButton: true,
+        confirmButtonText: yesText,
+        cancelButtonText: cancelText,
+        showLoaderOnConfirm: true,
+        preConfirm: async (login) => {
+        try {
+          var result = await $http({
+            method: "Delete",
+            url: url,
+            headers: header
+          });
+
+          if(result.status==200){
+            def.resolve(true);
+            
+          }
+        } catch (err) {
+          error(null,"Data Tidak Berhasil Dihapus");
+        }
+        },
+        allowOutsideClick: () => !Swal.isLoading()
       });
 
     return def.promise;

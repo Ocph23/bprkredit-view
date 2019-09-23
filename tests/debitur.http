@@ -1,0 +1,64 @@
+Post  http://testing.stimiksepnop.ac.id/api/Debitur HTTP/1.1
+content-type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjgiLCJVc2VybmFtZSI6IkNhbmRyYSIsIkVtYWlsIjoiQ2FuZHJhQGdtYWlsLmNvbSIsIk5hbWEiOiJDYW5kcmEgUHV0cmEgV2lqYWtzYW5hIiwiUm9sZSI6IkFkbWluIiwidGltZSI6MTU2OTI2NDE0Mn0.8XqpkwKgR_AaYvV8pD5km1Xx8hPdQvBFmtlNYkzM6Jo
+
+ {
+      "nama": "Budi",
+      "tempatLahir": "Makassar",
+      "tanggalLahir": "1988-03-26",
+      "Alamat": "Tanah Hitam",
+      "telp": "082238281801",
+      "lamaTinggal": "2",
+      "pekerjaan": "Swasta",
+      "tujuanPengajuanKredit": "Buka Usaha",
+      "statusUsaha": "Berjalan Baik",
+      "namaPasangan": "Test",
+      "pekerjaanPasangan": "Test",
+      "tanggal": "2019-09-09"
+    }
+###
+
+PUT  http://testing.stimiksepnop.ac.id/api/Debitur/2 HTTP/1.1
+content-type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjgiLCJVc2VybmFtZSI6IkNhbmRyYSIsIkVtYWlsIjoiQ2FuZHJhQGdtYWlsLmNvbSIsIk5hbWEiOiJDYW5kcmEgUHV0cmEgV2lqYWtzYW5hIiwiUm9sZSI6IkFkbWluIiwidGltZSI6MTU2OTI2NDE0Mn0.8XqpkwKgR_AaYvV8pD5km1Xx8hPdQvBFmtlNYkzM6Jo
+
+ {
+      "iddebitur": "2",
+      "nama": "Budi",
+      "tempatLahir": "Makassar",
+      "tanggalLahir": "1988-03-26",
+      "Alamat": "Tanah Hitam",
+      "telp": "082238281801",
+      "lamaTinggal": "2",
+      "pekerjaan": "Swasta",
+      "tujuanPengajuanKredit": "Buka Usaha",
+      "statusUsaha": "Berjalan Baik",
+      "namaPasangan": "Test",
+      "pekerjaanPasangan": "Test",
+      "tanggal": "2019-09-09"
+    }
+
+###
+
+Get http://testing.stimiksepnop.ac.id/api/Debitur HTTP/1.1
+content-type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjgiLCJVc2VybmFtZSI6IkNhbmRyYSIsIkVtYWlsIjoiQ2FuZHJhQGdtYWlsLmNvbSIsIk5hbWEiOiJDYW5kcmEgUHV0cmEgV2lqYWtzYW5hIiwiUm9sZSI6IkFkbWluIiwidGltZSI6MTU2OTI2MjAzMn0.yIkijVwvcDHXtgtTmmQ_l9tgypUwaxziTO-rlZvrjCw
+
+###
+
+
+
+Get http://testing.stimiksepnop.ac.id/api/Debitur/2 HTTP/1.1
+content-type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjgiLCJVc2VybmFtZSI6IkNhbmRyYSIsIkVtYWlsIjoiQ2FuZHJhQGdtYWlsLmNvbSIsIk5hbWEiOiJDYW5kcmEgUHV0cmEgV2lqYWtzYW5hIiwiUm9sZSI6IkFkbWluIiwidGltZSI6MTU2OTI2Mzc4Mn0.TXcBrsosLfR6inmjDlEZwYmJRnSGyK_18Zm2BqTudlE
+
+###
+
+
+
+
+Delete http://testing.stimiksepnop.ac.id/api/Debitur/2 HTTP/1.1
+content-type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjgiLCJVc2VybmFtZSI6IkNhbmRyYSIsIkVtYWlsIjoiQ2FuZHJhQGdtYWlsLmNvbSIsIk5hbWEiOiJDYW5kcmEgUHV0cmEgV2lqYWtzYW5hIiwiUm9sZSI6IkFkbWluIiwidGltZSI6MTU2OTI2Mzc4Mn0.TXcBrsosLfR6inmjDlEZwYmJRnSGyK_18Zm2BqTudlE
+
+###

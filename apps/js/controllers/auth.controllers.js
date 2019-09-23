@@ -4,8 +4,12 @@ angular.module("auth.controller",[])
 
 function LoginController($scope,$state,AuthService){
   $scope.login=function(user){
-    AuthService.login().then(x=>{
-        $state.go(x.Role);
+    AuthService.login(user).then(x=>{
+      if(x.Role=="Admin")
+        $state.go("CustomerService");
+        else{
+          $state.go("AnalystOfficer");
+        }
     })
   }
 }

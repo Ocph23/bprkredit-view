@@ -4,9 +4,22 @@ angular.module("helper.service",[])
 
 
 
-function helperServices (){
+function helperServices (message){
     var service={};
-    service.url="http://localhost";
+    service.url="http://testing.stimiksepnop.ac.id";
+    service.spinner=false;
 
-    return {url:service.url};
+    return {url:service.url,spinner:service.spinner,errorHandler:errorHandler};
+
+
+
+    function errorHandler(err){
+       message.error(err.message,err.status);
+    }
+
+
+
 }
+
+
+
