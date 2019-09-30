@@ -1,16 +1,20 @@
-angular.module("auth.controller",[])
+angular.module('auth.controller', []).controller('LoginController', LoginController);
 
-.controller("LoginController",LoginController)
-
-function LoginController($scope,$state,AuthService){
-  $scope.login=function(user){
-    AuthService.login(user).then(x=>{
-      if(x.Role=="Admin")
-        $state.go("CustomerService");
-        else{
-          $state.go("AnalystOfficer");
-        }
-    })
-  }
+function LoginController($scope, $state, AuthService) {
+	$scope.isCompleted = true;
+	$scope.login = function(user) {
+		$scope.isCompleted = false;
+		AuthService.login(user).then(
+			(x) => {
+				$scope.isCompleted = true;
+				if (x.Role == 'Admin') $state.go('CustomerService');
+				else {
+					$state.go('AnalystOfficer');
+				}
+			},
+			(err) => {
+				$scope.isCompleted = true;
+			}
+		);
+	};
 }
-

@@ -158,6 +158,10 @@ body {
   margin-top: 20px;
 }
 
+.mybutton .fa {
+  color: white !important;
+}
+
 .content-header {
   background: #8e24aa;
   background: -webkit-gradient(linear, left top, right top, from(#2b3abd), to(#a036c0));

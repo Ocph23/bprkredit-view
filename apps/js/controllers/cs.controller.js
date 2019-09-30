@@ -115,7 +115,9 @@ function CsKriteraController($scope, KriteriaService, swangular, message) {
   $scope.model = {};
   KriteriaService.get().then(x => {
     $scope.datas = x;
+   
   });
+ 
 
   $scope.edit = function (data) {
     $scope.model = data;

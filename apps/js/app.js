@@ -12,7 +12,7 @@ angular.module("app",
     "debitur.service","helper.service",
 
     "app.conponent",
-
+    "ngAnimate",
     "auth.controller",
     "cs.controller",
     "ao.controller",
