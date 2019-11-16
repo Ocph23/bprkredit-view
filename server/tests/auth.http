@@ -1,0 +1,10 @@
+POST https://localhost:5001/api/Authentication/request HTTP/1.1
+
+
+{
+    "user" : "ocph23",
+    "password" "Sony@77"
+}
+
+
+####
