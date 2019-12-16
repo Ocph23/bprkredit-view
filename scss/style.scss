@@ -1,12 +1,17 @@
-/*
-   new debiture
-*/
 $color-primary:#73ad21;
-
 $color-secound: rgb(142, 36, 170);
 $var1:1;
-:root{
 
+:root{}
+
+#plusIcon {
+    right: 0px;
+    position: absolute;
+    right: 20px;
+  }
+  
+.right-option{
+  text-align: end;
 }
 
 .form-group1 {
@@ -89,6 +94,7 @@ $var1:1;
     color: white;
   }
 }
+
 .dataTables_filter {
   align-items: flex-end;
   input {
@@ -113,6 +119,7 @@ body {
   background-size: cover;
   min-height: 100vh;
 }
+
 .account {
   color: grey;
   margin-top: 100px;
@@ -136,9 +143,11 @@ body {
     margin: 10px;
   }
 }
+
 .label-icon {
   margin-left: 20px;
 }
+
 .input {
   width: 100%;
 }
@@ -263,6 +272,7 @@ a:focus {
   display: block;
   border-bottom: 0.3px solid #6e838d85;
 }
+
 #sidebar ul li a:hover {
   color: white;
   background: linear-gradient(90deg, rgba(48, 63, 159, 1) 0%, rgba(123, 31, 162, 1) 100%);

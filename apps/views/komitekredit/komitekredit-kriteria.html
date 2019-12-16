@@ -1,0 +1,130 @@
+<h4>DAFTAR KRITERIA</h4>
+<div>
+  <a id="plusIcon" class="btn-floating z-depth-1-half btn-default" data-toggle="modal"
+    data-target="#basicExampleModal"><i class="fa fa-plus"></i></a>
+</div>
+
+<table class="table table-striped" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+      <th>NO</th>
+      <th>Nama Kriteria</th>
+      <th>Bobot</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody ng-repeat="data in datas">
+    <tr>
+      <td>{{ $index + 1 }}</td>
+      <td>{{data.namaKriteria}}</td>
+      <td>{{data.bobot}}%</td>
+      <td class="right-option">
+        <a ng-click="SelectCriteria(data)" data-toggle="modal" data-target="#subCriteriaModal">Tambah Sub</a>
+        | <a ng-click="edit(data)" data-toggle="modal" data-target="#basicExampleModal">Edit</a>
+        | <a ng-click="delete(data)">Delete</a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4">
+        <table class="table">
+          <tr>
+            <th>No</th>
+            <th>Nama Sub Kriteria</th>
+            <th>Nilai</th>
+            <th></th>
+          </tr>
+          <tr ng-repeat="item in data.subKriteria">
+            <td>{{$index+1}}</td>
+            <td>{{item.namaSub}}</td>
+            <td>{{item.maxNilai}}</td>
+            <td class="right-option">
+              
+              <a ng-click="SelectCriteria(item)" data-toggle="modal" data-target="#subCriteriaModal">Edit</a>
+              | <a ng-click="deleteSubCriteria(data)">Delete</a>
+            </td>
+            
+          </tr>
+        </table>
+      </td>
+    </tr>
+   
+  </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" data-backdrop="false" id="basicExampleModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-default">
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Kriteria</h5>
+        <button ng-disabled="saveSpin" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form style="margin-left: 10px;margin-right:10px;" ng-submit="save(model);saveSpin=true">
+          <div class="md-form">
+            <label>Nama Kriteria</label>
+            <input type="text" class="form-control active" ng-model="model.namaKriteria" required />
+          </div>
+          <div class="md-form">
+            <label>Bobot</label>
+            <input type="number" class="form-control active" ng-model="model.bobot" required />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Batal
+            </button>
+            <button type="submit" class="btn btn-primary">Simpan <i ng-show="saveSpin"
+                class="fa fa-spinner fa-spin fa-2x"></i></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" data-backdrop="false" id="subCriteriaModal" tabindex="-1" role="dialog"
+  aria-labelledby="subCriteriaModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-default">
+        <h5 class="modal-title" id="exampleModalLabel">Sub Kriteria</h5>
+        <button ng-disabled="saveSpin" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form style="margin-left: 10px;margin-right:10px;" ng-submit="saveSubCriteria(SelectedCriteria);saveSpin=true">
+          <div class="md-form">
+            <label>Nama Kriteria</label>
+            <input type="text" class="form-control active" ng-model="SelectedCriteria.namaSub" required />
+          </div>
+          <div class="md-form">
+            <label>Bobot</label>
+            <input type="number" class="form-control active" ng-model="SelectedCriteria.maxNilai" required />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Batal
+            </button>
+            <button type="submit" class="btn btn-primary">Simpan <i ng-show="saveSpin"
+                class="fa fa-spinner fa-spin fa-2x"></i></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+  #plusIcon {
+    right: 0px;
+    position: absolute;
+    right: 20px;
+  }
+</style>

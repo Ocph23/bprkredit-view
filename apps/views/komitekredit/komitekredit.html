@@ -2,7 +2,7 @@
   <!-- Sidebar Holder -->
   <nav id="sidebar">
     <div class="sidebar-header">
-      <h3>BPR KREDIT/CS</h3>
+      <h3>BPR KREDIT/Komite</h3>
       <div style="font-size:12px"></div>
     </div>
     <ul class="list-unstyled components">
@@ -22,16 +22,28 @@
         </ul>
       </li>
       <li>
-        <a href="javascript:;" data-toggle="collapse" aria-expanded="false" data-target="#debiture"
-          class="dropdown-toggle">Debitur</a>
-        <ul class="collapse list-unstyled" id="debiture">
+        <a href="javascript:;" data-toggle="collapse" aria-expanded="false" data-target="#master"
+          class="dropdown-toggle">Master</a>
+        <ul class="collapse list-unstyled" id="master">
           <li>
-            <a ui-sref="cs-new-debitur">Baru</a>
+            <a ui-sref="cs-persyaratan">Persyaratan</a>
           </li>
           <li>
-            <a ui-sref="cs-debitur">Data</a>
+            <a ui-sref="cs-kriteria">Kriteria</a>
           </li>
         </ul>
+      </li>
+      <li>
+        <a href="javascript:;" data-toggle="collapse" aria-expanded="false" data-target="#penilaian"
+          class="dropdown-toggle">Penilaian</a>
+          <ul class="collapse list-unstyled" id="penilaian">
+            <li>
+              <a ui-sref="komitekredit-periode">Periode</a>
+            </li>
+            <li>
+              <a ui-sref="cs-kriteria">Kriteria</a>
+            </li>
+          </ul>
       </li>
     </ul>
     <ul class="list-unstyled CTAs">

@@ -7,9 +7,20 @@ function LoginController($scope, $state, AuthService) {
 		AuthService.login(user).then(
 			(x) => {
 				$scope.isCompleted = true;
-				if (x.Role == 'Admin') $state.go('CustomerService');
-				else {
-					$state.go('AnalystOfficer');
+				switch (x.Role) {
+					case 'KomiteKredit':
+						$state.go('KomiteKredit');
+						break;
+
+					case 'CustomerService':
+						$state.go('CustomerService');
+						break;
+
+					case 'AnalystOfficer':
+						$state.go('AnalystOfficer');
+
+					default:
+						$state.go('login');
 				}
 			},
 			(err) => {

@@ -1,6 +1,13 @@
-/*
-   new debiture
-*/
+#plusIcon {
+  right: 0px;
+  position: absolute;
+  right: 20px;
+}
+
+.right-option {
+  text-align: end;
+}
+
 .form-group1 {
   position: relative;
   margin-bottom: 1.5rem;

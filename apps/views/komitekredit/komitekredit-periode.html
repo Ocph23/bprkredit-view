@@ -1,4 +1,4 @@
-<h4>DAFTAR KRITERIA</h4>
+<h4>Periode Penilaian</h4>
 <div>
   <a
     id="plusIcon"
@@ -13,17 +13,20 @@
   <thead>
     <tr>
       <th>NO</th>
-      <th>Nama Kriteria</th>
+      <th>Periode</th>
+      <th>Status</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="data in datas">
       <td>{{ $index + 1 }}</td>
-      <td>{{data.namaKriteria}}</td>
-      <td>
+      <td>{{ data.periode }}</td>
+      <td>{{ data.status }}</td>
+      <th class="right-option">
+        <a ui-sref="komitekredit-periode-detail({periode:data})" >Detail</a>|
         <a ng-click="edit(data)"   data-toggle="modal" data-target="#basicExampleModal">Edit</a> | <a ng-click="delete(data)">Delete</a>
-      </td>
+      </th>
     </tr>
   </tbody>
 </table>
@@ -41,7 +44,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header text-default">
-        <h5 class="modal-title" id="exampleModalLabel">Tambah Kriteria</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Periode</h5>
         <button ng-disabled="saveSpin"
           type="button"
           class="close"
@@ -54,18 +57,27 @@
       <div class="modal-body">
         <form
           style="margin-left: 10px;margin-right:10px;"
-          ng-submit="save(model);saveSpin=true"
+          ng-submit="save(model);saveSpin=true;"
         >
           <div class="md-form">
-            <label>nama kriteria</label>
+            <label>periode</label>
             <input
               type="text"
-              class="form-control active"
-              ng-model="model.namaKriteria"
+              class="form-control"
+              ng-model="model.nama"
               required
             />
+ 
           </div>
-        
+           <div class="md-form">
+           <div class="swich-body">
+            <div class="custom-control custom-switch">
+              <input type="checkbox" ng-model=swichstatus ng-change="swich(swichstatus)" class="custom-control-input" id="customSwitch1" checked>
+              <label class="custom-control-label" for="customSwitch1">{{model.status}}</label>
+            </div>
+           </div>
+           </div>
+         
           <div class="modal-footer">
             <button
               type="button"
@@ -76,7 +88,6 @@
             </button>
             <button type="submit" class="btn btn-primary">Simpan <i ng-show="saveSpin" class="fa fa-spinner fa-spin fa-2x"></i></button>
           </div>
-
         </form>
       </div>
     </div>
@@ -89,4 +100,8 @@
     position: absolute;
     right: 20px;
   }
+  .swich-body{
+    margin-left: 2.5rem;
+  }
+ 
 </style>

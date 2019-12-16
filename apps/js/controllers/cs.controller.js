@@ -2,19 +2,17 @@ angular
   .module("cs.controller", [])
   .controller("cs-debitur-controller", CsDebiturController)
   .controller("cs-home-controller", CsHomeController)
-  .controller("cs-kritera-controller", CsKriteraController)
-  .controller("cs-persyaratan-controller", CsPersyaratanController)
+ 
   .controller("cs-new-debitur-controller", CsNewDebiturController)
   .controller("cs-edit-debitur-controller", CsEditDebiturController)
   .controller("cs-controller", CsController);
 
 function CsController(AuthService, $state) {
-  var thisRole = "Admin";
+  var thisRole = "CustomerService";
   if (!AuthService.userIsLogin() || !AuthService.userInRole(thisRole))
    {
     $state.go("login");
    }
-   
 }
 
 function CsHomeController() { }
@@ -44,6 +42,8 @@ function CsEditDebiturController($scope, $stateParams, $state, DebiturService, m
 
 function CsNewDebiturController($scope, DebiturService, message, $state) {
   $scope.model = {};
+  $scope.model.tanggal=new Date();
+  $scope.model.status=null;
   $scope.Init = function () {
     $("#datepicker").datepicker({
       weekStart: 1,
@@ -108,111 +108,5 @@ function CsDebiturController($scope, DebiturService, message, $state, AuthServic
       },
       cancel => { }
     );
-  };
-}
-
-function CsKriteraController($scope, KriteriaService, swangular, message) {
-  $scope.model = {};
-  KriteriaService.get().then(x => {
-    $scope.datas = x;
-   
-  });
- 
-
-  $scope.edit = function (data) {
-    $scope.model = data;
-  };
-
-  $scope.save = function (data) {
-    if (data.idkriteria == undefined) {
-      KriteriaService.post(data).then(x => {
-        $("#basicExampleModal").modal("hide");
-        swangular.swal({
-          title: "Sukses",
-          text: "Data Berhasil Ditambah",
-          type: "info"
-        },err=>{
-          $scope.saveSpin=false;
-        });
-
-        $scope.saveSpin=false;
-        $scope.model = {};
-      });
-    } else {
-      KriteriaService.put(data).then(x => {
-        $("#basicExampleModal").modal("hide");
-        swangular.swal({
-          title: "Sukses",
-          text: "Data Berhasil Diubah",
-          type: "info"
-        },err=>{
-          $scope.saveSpin=false;
-        });
-        $scope.saveSpin=false;
-        $scope.model = {};
-      });
-    }
-
-   
-  };
-
-  $scope.delete = function (data) {
-    KriteriaService.remove(data).then(z => {
-      message.info("Berhasil Dihapus");
-    });
-  };
-}
-
-function CsPersyaratanController(
-  $scope,
-  PersyaratanService,
-  swangular,
-  message
-) {
-  $scope.model = {};
-  PersyaratanService.get().then(x => {
-    $scope.datas = x;
-  });
-  $scope.edit = function (data) {
-    $scope.model = data;
-  };
-
-  $scope.save = function (data) {
-    if (data.idpersyaratan == undefined) {
-      PersyaratanService.post(data).then(x => {
-        $("#basicExampleModal").modal("hide");
-        swangular.swal({
-          title: "Sukses",
-          text: "Data Berhasil Ditambah",
-          type: "info"
-        });
-      },err=>{
-        $scope.saveSpin=false;
-      });
-
-      $scope.saveSpin=false;
-      $scope.model = {};
-    } else {
-      PersyaratanService.put(data).then(x => {
-        $("#basicExampleModal").modal("hide");
-        swangular.swal({
-          title: "Sukses",
-          text: "Data Berhasil Diubah",
-          type: "info"
-        });
-      },err=>{
-        $scope.saveSpin=false;
-      });
-
-      $scope.saveSpin=false;
-      $scope.model = {};
-    }
-
-  };
-
-  $scope.delete = function (data) {
-    PersyaratanService.remove(data).then(z => {
-      message.info("Berhasil Dihapus");
-    });
   };
 }

@@ -9,13 +9,16 @@ angular.module("app",
     "storage.services",
     "persyaratan.service",
     "kriteria.service",
-    "debitur.service","helper.service",
+    "debitur.service",
+    "helper.service",
+    "periode.service",
 
     "app.conponent",
     "ngAnimate",
     "auth.controller",
     "cs.controller",
     "ao.controller",
+    "komitekredit.controller"
     
 
 ])

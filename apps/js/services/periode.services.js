@@ -1,9 +1,9 @@
 angular
-  .module("debitur.service", [])
+  .module("periode.service", [])
 
-  .factory("DebiturService", DebiturService);
+  .factory("PeriodeService", PeriodeService);
 
-function DebiturService(AuthService,helperServices, $q, $http, message) {
+function PeriodeService(AuthService, $q, $http,message, helperServices) {
   var service = {};
   service.instance = false;
   service.datas = [];
@@ -13,8 +13,7 @@ function DebiturService(AuthService,helperServices, $q, $http, message) {
     getById: getDatabyId,
     post: postData,
     put: putData,
-    remove: removeData,
-    savePenilaian:savePenilaian
+    remove: removeData
   };
 
   function getData() {
@@ -23,7 +22,7 @@ function DebiturService(AuthService,helperServices, $q, $http, message) {
     if (!service.instance) {
       $http({
         method: "GET",
-        url: helperServices.url + "/api/Debitur",
+        url: helperServices.url + "/api/periode",
         headers: AuthService.getHeader()
       }).then(
         x => {
@@ -43,27 +42,19 @@ function DebiturService(AuthService,helperServices, $q, $http, message) {
     return def.promise;
   }
 
-  function getDatabyId(params) {
-    var def = $q.defer();
-    try {
-      var result = service.datas.find(x => x.iddebitur == params);
-      def.resolve(result);
-    } catch (err) {
-      def.reject(err);
-    }
-    return def.promise;
-  }
+  function getDatabyId(params) {}
 
   function postData(params) {
     var def = $q.defer();
     $http({
       method: "POST",
-      url: helperServices.url + "/api/Debitur",
+      url: helperServices.url + "/api/periode",
       headers: AuthService.getHeader(),
       data: params
     }).then(
       x => {
-        datas.push(x.data);
+        params.idpersyaratan=x.data.data;
+        datas.push(params);
         def.resolve(x.data);
       },
       err => {
@@ -80,16 +71,15 @@ function DebiturService(AuthService,helperServices, $q, $http, message) {
     try {
       $http({
         method: "PUT",
-        url: helperServices.url + "/api/Debitur/" + params.iddebitur,
+        url: helperServices.url + "/api/periode/" + params.idperiode,
         headers: AuthService.getHeader(),
         data: params
       }).then(
         res => {
-          var dataInCollection = datas.find(
-            x => x.idpersyaratan == params.iddebitur
-          );
+          var dataInCollection = datas.find(x => x.idperiode == params.idperiode);
           if (dataInCollection) {
-            dataInCollection.nama = res.data.nama;
+            dataInCollection.periode = params.periode;
+            dataInCollection.status=params.status
             def.resolve(res.data);
           } else {
             def.resolve(res.data);
@@ -101,6 +91,7 @@ function DebiturService(AuthService,helperServices, $q, $http, message) {
       );
     } catch (error) {
       helperServices.errorHandler(err);
+      def.reject(err);
     }
     return def.promise;
   }
@@ -108,45 +99,22 @@ function DebiturService(AuthService,helperServices, $q, $http, message) {
   function removeData(params) {
     var def = $q.defer();
     try {
-      $http({
-        method: "Delete",
-        url: helperServices.url + "/api/Debitur/" + params.iddebitur,
-        headers: AuthService.getHeader()
-      }).then(
-        x => {
-          var index = datas.indexOf(params);
-          datas.splice(index, 1);
-          def.resolve(true);
-        },
-        err => {
-          helperServices.errorHandler(err);
-        }
-      );
+        message.dialogDelete("Yakin Hapus Data ? ",
+        helperServices.url + "/api/Persyaratan/" + params.idperiode,
+        AuthService.getHeader())
+        .then(
+          x => {
+            var index = datas.indexOf(params);
+            datas.splice(index, 1);
+            def.resolve(true);
+          },
+          err => {
+            helperServices.errorHandler(err);
+          }
+        );
     } catch (err) {
       helperServices.errorHandler(err);
     }
-    return def.promise;
-  }
-
-
-  function savePenilaian(params){
-    var def = $q.defer();
-    $http({
-      method: "POST",
-      url: helperServices.url + "/api/Debitur/savePenilaian",
-      headers: AuthService.getHeader(),
-      data: params
-    }).then(
-      x => {
-        datas.push(x.data);
-        def.resolve(x.data);
-      },
-      err => {
-        helperServices.errorHandler(err);
-        def.reject(err);
-      }
-    );
-
     return def.promise;
   }
 }
