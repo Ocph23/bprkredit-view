@@ -81,7 +81,7 @@ angular.module('app.router', [ 'ui.router' ]).config(function($stateProvider, $u
 		.state('KomiteKredit', {
 			url: '/KomiteKredit',
 			controller: 'komitekredit-controller',
-			templateUrl: '../apps/views/KomiteKredit/KomiteKredit.html'
+			templateUrl: '../apps/views/komitekredit/komitekredit.html'
         })
         .state('cs-kriteria', {
 			url: '/kriteria',
@@ -100,14 +100,14 @@ angular.module('app.router', [ 'ui.router' ]).config(function($stateProvider, $u
 			url: '/pediode',
 			parent: 'KomiteKredit',
 			controller: 'KomiteKredit-periode-controller',
-			templateUrl: '../apps/views/KomiteKredit/KomiteKredit-periode.html'
+			templateUrl: '../apps/views/komitekredit/KomiteKredit-periode.html'
 		})
 		.state('komitekredit-periode-detail', {
 			url: '/pediode-detail/{periode:json}',
 			parent: 'KomiteKredit',
 			params:null,
 			controller: 'KomiteKredit-periode-detail-controller',
-			templateUrl: '../apps/views/KomiteKredit/KomiteKredit-periode-detail.html'
+			templateUrl: '../apps/views/komitekredit/KomiteKredit-periode-detail.html'
 		})
 
         //end komite
