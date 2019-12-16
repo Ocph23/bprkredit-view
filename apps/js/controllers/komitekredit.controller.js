@@ -5,7 +5,6 @@ angular
   .controller('komitekredit-persyaratan-controller', KomitePersyaratanController)
   .controller('KomiteKredit-periode-controller', KomiteKreditPeriodeController)
   .controller('KomiteKredit-periode-detail-controller',KomiteKreditperiodedetailcontroller)
-  
   ;
 
 function KomiteKreditController() {}
