@@ -34,7 +34,7 @@ function PeriodeService(AuthService, $q, $http, message, helperServices) {
 				}
 			);
 		} else {
-			def.resolve(datas);
+			def.resolve(service.datas);
 		}
 
 		return def.promise;

@@ -230,6 +230,11 @@ function komitekreditPeriodeController($scope, PeriodeService) {
 
 function komitekreditperiodedetailcontroller($scope, $stateParams, KriteriaService, DebiturService) {
 	$scope.periode = $stateParams.periode;
+	if ($scope.periode.DataDebitur === undefined) {
+		$scope.periode.DataDebitur = [];
+	} else {
+	}
+
 	KriteriaService.get().then(
 		(x) => {
 			$scope.dataKriteria = x;

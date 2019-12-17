@@ -26,10 +26,18 @@ function CsEditDebiturController($scope, $stateParams, $state, DebiturService, m
 		autoclose: true,
 		todayHighlight: true
 	});
-
 	PersyaratanService.get().then(
 		(x) => {
-			$scope.model.DataPersyaratan = x;
+			if ($scope.model.persyaratan.length <= 0) {
+				x.forEach((element) => {
+					element.nilai = 0;
+					$scope.model.persyaratan.push(element);
+				});
+			} else {
+				$scope.model.persyaratan.forEach((element) => {
+					element.nilai = Boolean(element.nilai);
+				});
+			}
 		},
 		(err) => {}
 	);
@@ -41,8 +49,8 @@ function CsEditDebiturController($scope, $stateParams, $state, DebiturService, m
 		});
 	};
 
-	$scope.saveDataPersyaratan = function(iddebitur, data) {
-		PersyaratanService.saveDataPersyaratan(iddebitur, data).then(
+	$scope.saveDataPersyaratan = function(model) {
+		PersyaratanService.saveDataPersyaratan(model.iddebitur, model.persyaratan).then(
 			(x) => {
 				message.info('Data Persyaratan Berhasil Disimpan');
 			},
@@ -71,11 +79,14 @@ function CsNewDebiturController($scope, DebiturService, message, $state) {
 	};
 }
 
-function CsDebiturController($scope, DebiturService, message, $state, AuthService) {
+function CsDebiturController($scope, DebiturService, PersyaratanService, message, $state, AuthService) {
 	$scope.model = {};
-	DebiturService.get().then((x) => {
-		$scope.datas = x;
-	});
+	PersyaratanService.getDataPersyaratan().then(
+		(x) => {
+			$scope.datas = x;
+		},
+		(err) => {}
+	);
 
 	$scope.edit = function(data) {
 		$scope.model = data;

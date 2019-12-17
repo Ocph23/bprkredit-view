@@ -144,9 +144,9 @@ body {
 }
 
 .account .account-card {
-  width: 300px;
+  width: 350px;
   height: 400px;
-  padding: 20px;
+  padding: 30px;
   margin: auto;
   margin-top: 20px;
   background: white;
@@ -160,6 +160,10 @@ body {
 
 .account .account-card .header {
   font-size: 30px;
+}
+
+.account .account-card .account-body {
+  text-align: center !important;
 }
 
 .account .action {

@@ -12,7 +12,8 @@ function DebiturService(AuthService, helperServices, $q, $http, message) {
 		post: postData,
 		put: putData,
 		remove: removeData,
-		savePenilaian: savePenilaian
+		savePenilaian: savePenilaian,
+		getDebiturBy: getDebiturBy
 	};
 
 	function getData() {
@@ -38,6 +39,25 @@ function DebiturService(AuthService, helperServices, $q, $http, message) {
 			def.resolve(service.datas);
 		}
 
+		return def.promise;
+	}
+
+	function getDebiturBy(id) {
+		var def = $q.defer();
+
+		$http({
+			method: 'GET',
+			url: helperServices.url + '/api/Debitur/' + id,
+			headers: AuthService.getHeader()
+		}).then(
+			(x) => {
+				def.resolve(x.data.data);
+			},
+			(err) => {
+				helperServices.errorHandler(err);
+				def.reject(err);
+			}
+		);
 		return def.promise;
 	}
 
@@ -124,16 +144,15 @@ function DebiturService(AuthService, helperServices, $q, $http, message) {
 		return def.promise;
 	}
 
-	function savePenilaian(params) {
+	function savePenilaian(idperiode, model) {
 		var def = $q.defer();
 		$http({
 			method: 'POST',
-			url: helperServices.url + '/api/Debitur/savePenilaian',
+			url: helperServices.url + '/api/DataKriteria?iddebitur=' + model.iddebitur + '&idperiode=' + idperiode,
 			headers: AuthService.getHeader(),
-			data: params
+			data: model.kriteria
 		}).then(
 			(x) => {
-				datas.push(x.data);
 				def.resolve(x.data);
 			},
 			(err) => {

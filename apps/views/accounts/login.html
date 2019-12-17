@@ -2,34 +2,31 @@
   <div class="header">
     Login
   </div>
-  <div >
+  <div class="account-body">
     <form ng-submit="login(user)">
-        <div class="md-form input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text md-addon" id="material-addon1"
-                ><i class="fa fa-user" aria-hidden="true"></i
-              ></span>
-            </div>
-           <div class="input-group-prepend">
-              <input type="text" class="form-control" ng-model="user.Username" placeholder="User Name"/>
-           </div>
-          </div>
-          <div class="md-form input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text md-addon" id="material-addon1"
-                  ><i class="fa fa-lock" aria-hidden="true"></i
-                ></span>
-              </div>
-             <div class="input-group-prepend">
-                <input type="password" class="form-control" ng-model="user.Password" placeholder="password"/>
-             </div>
-            </div>
-      
-            <button type="submit" class="mybutton">Login <i ng-show="!isCompleted" class="fa fa-spinner fa-pulse"></i> </button>
+      <div class="md-form input-group mb-4">
+        <div class="input-group-prepend">
+          <span class="input-group-text md-addon" id="material-addon1"><i class="fa fa-user"
+              aria-hidden="true"></i></span>
+          <input type="text" class="form-control" ng-model="user.Username" placeholder="User Name" required />
+        </div>
+      </div>
+      <div class="md-form input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text md-addon" id="material-addon1"><i class="fa fa-lock"
+              aria-hidden="true"></i></span>
+        </div>
+        <div class="input-group-prepend">
+          <input type="password" class="form-control" ng-model="user.Password" placeholder="password" required />
+        </div>
+      </div>
+
+      <button type="submit" class="mybutton">Login <i ng-show="!isCompleted" class="fa fa-spinner fa-pulse"></i>
+      </button>
     </form>
   </div>
- <div class="action">
-  <a href=""> Lupa Password </a> | 
-  <a href="#!/account/register"> Register</a>
- </div>
+  <div class="action">
+    <a href=""> Lupa Password </a> |
+    <a href="#!/account/register"> Register</a>
+  </div>
 </div>

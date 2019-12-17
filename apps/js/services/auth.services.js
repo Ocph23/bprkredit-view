@@ -1,162 +1,156 @@
-angular
-  .module("auth.service", [])
-
-  .factory("AuthService", AuthService);
+angular.module('auth.service', []).factory('AuthService', AuthService);
 
 function AuthService($http, $q, StorageService, $state, helperServices) {
-  var service = {};
-  service.me=null;
+	var service = {};
+	service.me = null;
 
-  return {
-    login: login,
-    logoff: logoff,
-    userIsLogin: userIsLogin,
-    getUserName: getUserName,
-    userIsLogin: userIsLogin,
-    userInRole: userInRole,
-    getHeader: getHeader,
-    url: service.url,updatemitrauser:updatemitrauser,
-    registerMitraUser:registerMitraUser,
-    me:getMe
-  };
+	return {
+		login: login,
+		logoff: logoff,
+		userIsLogin: userIsLogin,
+		getUserName: getUserName,
+		userIsLogin: userIsLogin,
+		userInRole: userInRole,
+		getHeader: getHeader,
+		url: service.url,
+		updatemitrauser: updatemitrauser,
+		registerMitraUser: registerMitraUser,
+		me: getMe
+	};
 
-  function login(user) {
-    var def = $q.defer();
-    $http({
-      method: "POST",
-      url: helperServices.url + "/api/Users/Login",
-      headers: getHeader(),
-      data: user
-    }).then(
-      res => {
-        StorageService.addObject("user", res.data.data);
-        def.resolve(res.data.data);
-      },
-      err => {
-        helperServices.errorHandler(err);
-      }
-    );
+	function login(user) {
+		var def = $q.defer();
+		$http({
+			method: 'POST',
+			url: helperServices.url + '/api/Users/Login',
+			headers: getHeader(),
+			data: user
+		}).then(
+			(res) => {
+				StorageService.addObject('user', res.data.data);
+				def.resolve(res.data.data);
+			},
+			(err) => {
+				helperServices.errorHandler(err);
+				def.reject();
+			}
+		);
 
-    return def.promise;
-  }
+		return def.promise;
+	}
 
+	function getMe() {
+		var def = $q.defer();
+		if (service.me) {
+			def.resolve(service.me);
+		} else {
+			$http({
+				method: 'Get',
+				url: helperServices.url + '/api/auth/me',
+				headers: getHeader()
+			}).then(
+				(res) => {
+					service.me = res.data;
+					def.resolve(service.me);
+				},
+				(err) => {
+					helperServices.errorHandler(err);
+				}
+			);
+		}
+		return def.promise;
+	}
 
-  function getMe() {
-    var def = $q.defer();
-    if(service.me)
-    {
-      def.resolve(service.me);
-    }else{
-      $http({
-        method: "Get",
-        url: helperServices.url + "/api/auth/me",
-        headers: getHeader()
-      }).then(
-        res => {
-          service.me=res.data;
-          def.resolve(service.me);
-        },
-        err => {
-          helperServices.errorHandler(err);
-        }
-      );
-    }
-    return def.promise;
-  }
+	function getHeader() {
+		try {
+			if (userIsLogin()) {
+				var token = getToken();
+				return {
+					'Content-Type': 'application/json',
+					Authorization: getToken()
+				};
+			} else {
+				return {
+					'Content-Type': 'application/json'
+				};
+			}
+		} catch (err) {
+			return {
+				'Content-Type': 'application/json'
+			};
+		}
+	}
 
-  function getHeader() {
-    try {
-      if (userIsLogin()) {
-        var token = getToken();
+	function logoff() {
+		StorageService.clear();
+		$state.go('login');
+	}
 
-        return {
-          "Content-Type": "application/json",
-          Authorization: getToken()
-        };
-      } else {
-        return {
-          "Content-Type": "application/json"
-        };
-      }
-    } catch {
-      return {
-        "Content-Type": "application/json"
-      };
-    }
-  }
+	function getUserName() {
+		if (userIsLogin) {
+			var result = StorageService.getObject('user');
+			return result.Username;
+		}
+	}
 
-  function logoff() {
-    StorageService.clear();
-    $state.go("login");
-  }
+	function userIsLogin() {
+		var result = StorageService.getObject('user');
+		if (result) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-  function getUserName() {
-    if (userIsLogin) {
-      var result = StorageService.getObject("user");
-      return result.Username;
-    }
-  }
+	function userInRole(role) {
+		var result = StorageService.getObject('user');
+		if (result && result.Role === role) {
+			return true;
+		}
+	}
 
-  function userIsLogin() {
-    var result = StorageService.getObject("user");
-    if (result) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+	function getToken() {
+		var result = StorageService.getObject('user');
+		if (result && result.Token) {
+			return result.Token;
+		}
+	}
 
-  function userInRole(role) {
-    var result = StorageService.getObject("user");
-    if (result && result.Role===role) {
-      return true;
-    }
-  }
+	function updatemitrauser(model) {
+		var def = $q.defer();
+		$http({
+			method: 'Put',
+			url: helperServices.url + '/api/auth/updatemitrauser/' + model.idUserMitraBayar,
+			headers: getHeader(),
+			data: model
+		}).then(
+			(data) => {
+				def.resolve(data);
+			},
+			(err) => {
+				helperServices.errorHandler(err);
+				model.status = !model.status;
+			}
+		);
+		return def.promise;
+	}
 
-  function getToken() {
-    var result = StorageService.getObject("user");
-    if (result && result.Token) {
-      return result.Token;
-    }
-  }
+	function registerMitraUser(model) {
+		var def = $q.defer();
+		$http({
+			method: 'POST',
+			url: helperServices.url + '/api/auth/addmitrauser',
+			headers: getHeader(),
+			data: model
+		}).then(
+			(data) => {
+				def.resolve(data);
+			},
+			(err) => {
+				helperServices.errorHandler(err);
+			}
+		);
 
-
-  function updatemitrauser(model){
-    var def = $q.defer();
-    $http({
-      method: "Put",
-      url: helperServices.url + "/api/auth/updatemitrauser/"+model.idUserMitraBayar,
-      headers: getHeader(),
-      data: model
-    }).then(
-      data => {
-        def.resolve(data);
-      },
-      err => {
-        helperServices.errorHandler(err);
-        model.status=!model.status;
-      }
-    );
-    return def.promise;
-  }
-
-  function registerMitraUser(model) {
-    var def = $q.defer();
-    $http({
-      method: "POST",
-      url: helperServices.url + "/api/auth/addmitrauser",
-      headers: getHeader(),
-      data: model
-    }).then(
-      data => {
-        def.resolve(data);
-      },
-      err => {
-        helperServices.errorHandler(err);
-      }
-    );
-
-    return def.promise;
-
-  }
+		return def.promise;
+	}
 }

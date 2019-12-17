@@ -12,8 +12,27 @@ function PersyaratanService(AuthService, $q, $http, message, helperServices) {
 		post: postData,
 		put: putData,
 		remove: removeData,
+		getDataPersyaratan: getDataPersyaratan,
 		saveDataPersyaratan: saveDataPersyaratan
 	};
+
+	function getDataPersyaratan() {
+		var def = $q.defer();
+		$http({
+			method: 'GET',
+			url: helperServices.url + '/api/DataPersyaratan',
+			headers: AuthService.getHeader()
+		}).then(
+			(x) => {
+				def.resolve(x.data.data);
+			},
+			(err) => {
+				helperServices.errorHandler(err);
+				def.reject(err);
+			}
+		);
+		return def.promise;
+	}
 
 	function getData() {
 		var def = $q.defer();
@@ -123,7 +142,7 @@ function PersyaratanService(AuthService, $q, $http, message, helperServices) {
 		var def = $q.defer();
 		$http({
 			method: 'POST',
-			url: helperServices.url + '/api/Persyaratan?iddebitur=' + iddebitur,
+			url: helperServices.url + '/api/DataPersyaratan?iddebitur=' + iddebitur,
 			headers: AuthService.getHeader(),
 			data: params
 		}).then(

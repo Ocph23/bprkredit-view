@@ -92,13 +92,13 @@
           <a class="collapsed card-link" data-toggle="collapse" data-target="#collapseTwo">
             Data Persyaratan
           </a>
-          <button href="#" ng-click="saveDataPersyaratan(DataPersyaratan)" class="btn btn-success pull-right"
+          <button href="#" ng-click="saveDataPersyaratan(model)" class="btn btn-success pull-right"
             data-target="#">Simpan</button>
         </div>
         <div id="collapseTwo" class="collapse" data-parent="#accordion">
           <div class="card-body">
             <ul class="list-group">
-              <li ng-repeat="item in model.DataPersyaratan"
+              <li ng-repeat="item in model.persyaratan"
                 class="list-group-item d-flex justify-content-between align-items-center">
                 {{item.nama}}
                 <span class="badge badge-primary badge-pill"><input style="font-size: 20px" ng-model="item.nilai"

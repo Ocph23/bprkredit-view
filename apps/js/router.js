@@ -17,7 +17,6 @@ angular.module('app.router', [ 'ui.router' ]).config(function($stateProvider, $u
 			templateUrl: '../apps/views/accounts/register.html'
 		})
 		//cs
-
 		.state('CustomerService', {
 			url: '/cs',
 			controller: 'cs-controller',
@@ -44,12 +43,10 @@ angular.module('app.router', [ 'ui.router' ]).config(function($stateProvider, $u
 		.state('cs-edit-debitur', {
 			url: '/edit-debitur/{debitur:json}',
 			parent: 'CustomerService',
-			params:null,
+			params: null,
 			controller: 'cs-edit-debitur-controller',
 			templateUrl: '../apps/views/cs/cs-editdebitur.html'
 		})
-	
-		
 		//ao
 
 		.state('AnalystOfficer', {
@@ -72,20 +69,32 @@ angular.module('app.router', [ 'ui.router' ]).config(function($stateProvider, $u
 		.state('ao-detail-debitur', {
 			url: '/detail-debitur/{debitur:json}',
 			parent: 'AnalystOfficer',
-			params:null,
+			params: null,
 			controller: 'ao-detail-debitur-controller',
 			templateUrl: '../apps/views/ao/ao-detail-debitur.html'
 		})
+		.state('ao-periode', {
+			parent: 'AnalystOfficer',
+			url: '/periode',
+			controller: 'ao-periode-controller',
+			templateUrl: '../apps/views/ao/ao-periode.html'
+		})
+		.state('ao-periode-detail', {
+			url: '/periode-detail/{periode:json}',
+			parent: 'AnalystOfficer',
+			params: null,
+			controller: 'ao-periode-detail-controller',
+			templateUrl: '../apps/views/ao/ao-periode-detail.html'
+		})
 		//end ao
 
-
-        //komite
+		//komite
 		.state('komitekredit', {
 			url: '/komitekredit',
 			controller: 'komitekredit-controller',
 			templateUrl: '../apps/views/komitekredit/komitekredit.html'
-        })
-        .state('komitekredit-kriteria', {
+		})
+		.state('komitekredit-kriteria', {
 			url: '/kriteria',
 			parent: 'komitekredit',
 			controller: 'komitekredit-kritera-controller',
@@ -97,23 +106,7 @@ angular.module('app.router', [ 'ui.router' ]).config(function($stateProvider, $u
 			controller: 'komitekredit-persyaratan-controller',
 			templateUrl: '../apps/views/komitekredit/komitekredit-persyaratan.html'
 		})
-
-		.state('komitekredit-periode', {
-			url: '/pediode',
-			parent: 'komitekredit',
-			controller: 'komitekredit-periode-controller',
-			templateUrl: '../apps/views/komitekredit/komitekredit-periode.html'
-		})
-
-		.state('komitekredit-periode-detail', {
-			url: '/pediode-detail/{periode:json}',
-			parent: 'komitekredit',
-			params:null,
-			controller: 'komitekredit-periode-detail-controller',
-			templateUrl: '../apps/views/komitekredit/komitekredit-periode-detail.html'
-		})
-
-        //end komite
+		//end komite
 		.state(
 			'about',
 			{
