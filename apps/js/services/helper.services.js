@@ -7,7 +7,7 @@ angular.module("helper.service",[])
 function helperServices (message){
     var service={};
     //service.url="http://testing.stimiksepnop.ac.id";
-    service.url="https://kreditbpr.herokuapp.com/";
+    service.url="https://kreditbpr.herokuapp.com";
     service.spinner=false;
 
     return {url:service.url,spinner:service.spinner,errorHandler:errorHandler};
@@ -15,9 +15,6 @@ function helperServices (message){
     function errorHandler(err){
        message.error(err.message,err.status);
     }
-
-
-
 }
 
 

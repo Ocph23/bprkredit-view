@@ -1,16 +1,34 @@
-$color-primary:#73ad21;
-$color-secound: rgb(142, 36, 170);
-$var1:1;
+$color-primary: rgb(52, 52, 182);
+$color-secound: rgba(0, 206, 255, 1);
+$color-mainGradient: linear-gradient(90deg, rgba(52, 52, 182, 1) 0%, rgba(0, 206, 255, 1) 100%);
+$var1: 1;
 
-:root{}
+:root {
+}
+
+.container {
+  padding: 20px !important;
+}
+.card {
+  margin: 5px;
+  background: rgba(255, 255, 255, 0.8) !important;
+  .card-header {
+    background: $color-mainGradient;
+    .card-link {
+      color: white !important;
+      margin: 10px !important;
+      padding: 10px !important;
+    }
+  }
+}
 
 #plusIcon {
-    right: 0px;
-    position: absolute;
-    right: 20px;
-  }
-  
-.right-option{
+  right: 0px;
+  position: absolute;
+  right: 20px;
+}
+
+.right-option {
   text-align: end;
 }
 
@@ -60,12 +78,12 @@ $var1:1;
         position: relative;
         width: 100%;
         height: 200px;
-        border: 3px solid #73ad21;
+        border: 3px solid $color-primary;
         button {
           position: absolute;
           top: 80px;
           right: 0;
-          border: 3px solid #73ad21;
+          border: 3px solid $color-primary;
         }
       }
     }
@@ -128,7 +146,7 @@ body {
     height: 400px;
     padding: 20px;
     margin: auto;
-    margin-top:20px;
+    margin-top: 20px;
     background: white;
     opacity: 0.7;
     border-radius: 10px;
@@ -153,8 +171,8 @@ body {
 }
 
 .mybutton {
-  background: rgb(142, 36, 170);
-  background: linear-gradient(90deg, rgba(142, 36, 170, 1) 0%, rgba(255, 110, 64, 1) 100%);
+  background: $color-primary;
+  background: $color-mainGradient;
   width: 100%;
   height: 45px;
   color: white;
@@ -167,8 +185,8 @@ body {
 }
 
 .content-header {
-  background: rgb(142, 36, 170);
-  background: linear-gradient(90deg, rgb(43, 58, 189) 0%, rgb(160, 54, 192) 100%);
+  background: $color-secound;
+  background: $color-mainGradient;
   width: 100%;
   height: 65px;
   color: white;
@@ -236,8 +254,9 @@ a:focus {
 #sidebar {
   min-width: 250px;
   max-width: 250px;
-  background: rgba(45, 54, 207, 1);
-  background: linear-gradient(top, rgba(48, 63, 159, 1) 0%, rgba(123, 31, 162, 1) 100%);
+  background: $color-primary;
+  background: linear-gradient(135deg, rgba(52, 52, 182, 1) 0%, rgba(0, 206, 255, 1) 100%);
+
   color: #fff;
   transition: all 0.6s cubic-bezier(0.945, 0.02, 0.27, 0.665);
   transform-origin: bottom left;
@@ -275,7 +294,7 @@ a:focus {
 
 #sidebar ul li a:hover {
   color: white;
-  background: linear-gradient(90deg, rgba(48, 63, 159, 1) 0%, rgba(123, 31, 162, 1) 100%);
+  background: $color-mainGradient;
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
   margin-top: 3px;
@@ -287,7 +306,7 @@ a[aria-expanded="true"] {
   margin-top: 2px;
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
-  background: linear-gradient(90deg, rgba(48, 63, 159, 1) 0%, rgba(123, 31, 162, 1) 100%);
+  background: $color-mainGradient;
 }
 
 a[data-toggle="collapse"] {
@@ -340,7 +359,7 @@ a.article:hover {
   min-height: 100vh;
   transition: all 0.3s;
   .navbar {
-    background: linear-gradient(90deg, rgba(48, 63, 159, 1) 0%, rgba(123, 31, 162, 1) 100%);
+    background: $color-mainGradient;
   }
 }
 

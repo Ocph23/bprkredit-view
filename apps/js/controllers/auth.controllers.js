@@ -9,7 +9,7 @@ function LoginController($scope, $state, AuthService) {
 				$scope.isCompleted = true;
 				switch (x.Role) {
 					case 'KomiteKredit':
-						$state.go('KomiteKredit');
+						$state.go('komitekredit');
 						break;
 
 					case 'CustomerService':
@@ -18,6 +18,7 @@ function LoginController($scope, $state, AuthService) {
 
 					case 'AnalystOfficer':
 						$state.go('AnalystOfficer');
+						break;
 
 					default:
 						$state.go('login');

@@ -1,16 +1,16 @@
-<div class="newdebitur" ng-init=Init()>
+<div class="newdebitur">
   <div class="container">
     <div class="title">
       Calon Debitur
     </div>
     <form ng-submit="save(model)">
-      <div class="row"> 
+      <div class="row">
         <div class="col-md-6 kiri">
-            <div class="md-form">
-                <input  id="nama" type="text" class="form-control active" ng-model="model.nama" required />
-                <label for="nama">Nama</label>
-              </div>
-         
+          <div class="md-form">
+            <input id="nama" type="text" class="form-control active" ng-model="model.nama" required />
+            <label for="nama">Nama</label>
+          </div>
+
           <div class="md-form">
             <label>Nomor Identitas</label>
             <input type="text" class="form-control" ng-model="model.NoIdentitas" required />
@@ -65,9 +65,10 @@
           </div>
           <div class="md-form">
             <label>Tujuan Pengajuan Kredit</label>
-            <textarea class="md-textarea form-control" ng-model="model.tujuanPengajuanKredit" aria-label="With textarea"></textarea>
+            <textarea class="md-textarea form-control" ng-model="model.tujuanPengajuanKredit"
+              aria-label="With textarea"></textarea>
           </div>
-        
+
         </div>
       </div>
       <div class="row pull-right">
@@ -76,13 +77,3 @@
     </form>
   </div>
 </div>
-
-<script>
-
-$(window).load($.debounce(200,function(){
-  $('input:-webkit-autofill').each(function(){
-      if ($(this).val().length !== "") {
-          $(this).siblings('label, i').addClass('active');
-      }
-  });
-}));</script>
