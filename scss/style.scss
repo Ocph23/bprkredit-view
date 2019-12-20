@@ -5,13 +5,19 @@ $var1: 1;
 
 :root {
 }
-
+.badge {
+  padding: 5px;
+  width: 35px;
+  background-color: $color-secound !important;
+}
 .container {
   padding: 20px !important;
 }
 .card {
   margin: 5px;
-  background: rgba(255, 255, 255, 0.8) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: black;
+  padding: 20px;
   .card-header {
     background: $color-mainGradient;
     .card-link {
@@ -22,10 +28,12 @@ $var1: 1;
   }
 }
 
-#plusIcon {
-  right: 0px;
-  position: absolute;
-  right: 20px;
+.plusIconContainer {
+  text-align: right;
+  #plusIcon {
+    right: 20px;
+    margin: 5px;
+  }
 }
 
 .right-option {
@@ -138,25 +146,47 @@ body {
   min-height: 100vh;
 }
 
+.user-home {
+  margin: 10%;
+  text-align: center;
+
+  img {
+    margin: 50px;
+  }
+}
+
 .account {
   color: grey;
   margin-top: 100px;
   .account-card {
     width: 350px;
-    height: 400px;
+    height: 450px;
     padding: 30px;
     margin: auto;
     margin-top: 20px;
-    background: white;
-    opacity: 0.7;
+    background: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
     i {
       color: grey;
     }
     .header {
+      display: grid;
       font-size: 30px;
+      h4 {
+        margin-left: 20px;
+      }
+      img {
+        justify-self: center;
+        width: 60%;
+        margin-bottom: 20px;
+      }
     }
     .account-body {
+      display: grid;
+      form {
+        width: 250px;
+        justify-self: center;
+      }
       text-align: center !important;
     }
   }
@@ -273,8 +303,18 @@ a:focus {
 
 #sidebar .sidebar-header {
   padding: 20px;
-  background: transparent;
+  background: white;
+  color: black;
+  display: grid;
   box-shadow: 0px 0px 3px 0px rgba(237, 237, 237, 1);
+  img {
+    justify-self: center;
+    width: 80%;
+  }
+  h5 {
+    margin-top: 5px;
+    justify-self: center;
+  }
 }
 
 #sidebar ul.components {

@@ -79,6 +79,13 @@ angular.module('app.router', [ 'ui.router' ]).config(function($stateProvider, $u
 			controller: 'ao-periode-controller',
 			templateUrl: '../apps/views/ao/ao-periode.html'
 		})
+		.state('ao-hasil', {
+			parent: 'AnalystOfficer',
+			url: '/hasil/:id',
+			parent: 'AnalystOfficer',
+			controller: 'ao-hasil-controller',
+			templateUrl: '../apps/views/ao/ao-hasil.html'
+		})
 		.state('ao-periode-detail', {
 			url: '/periode-detail/{periode:json}',
 			parent: 'AnalystOfficer',
@@ -93,6 +100,12 @@ angular.module('app.router', [ 'ui.router' ]).config(function($stateProvider, $u
 			url: '/komitekredit',
 			controller: 'komitekredit-controller',
 			templateUrl: '../apps/views/komitekredit/komitekredit.html'
+		})
+		.state('komitekredit-home', {
+			url: '/home',
+			parent: 'komitekredit',
+			controller: 'komitekredit-home-controller',
+			templateUrl: '../apps/views/komitekredit/komitekredit-home.html'
 		})
 		.state('komitekredit-kriteria', {
 			url: '/kriteria',

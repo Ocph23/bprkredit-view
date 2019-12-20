@@ -4,7 +4,8 @@ angular
 	.controller('ao-debitur-controller', AoDebiturController)
 	.controller('ao-detail-debitur-controller', AoDetailDebiturController)
 	.controller('ao-periode-controller', AoPeriodeController)
-	.controller('ao-periode-detail-controller', Aoperiodedetailcontroller);
+	.controller('ao-periode-detail-controller', Aoperiodedetailcontroller)
+	.controller('ao-hasil-controller', AohasilController);
 
 function AoHomeController($scope, AuthService, $state) {
 	var thisRole = 'AnalystOfficer';
@@ -197,3 +198,5 @@ function Aoperiodedetailcontroller($scope, $stateParams, KriteriaService, Debitu
 		DebiturService.savePenilaian($scope.periode.idperiode, debitur).then((x) => {}, (err) => {});
 	};
 }
+
+function AohasilController($scope, $state, $stateParams) {}

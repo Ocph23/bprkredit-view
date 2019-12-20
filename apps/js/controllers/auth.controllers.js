@@ -9,15 +9,15 @@ function LoginController($scope, $state, AuthService) {
 				$scope.isCompleted = true;
 				switch (x.Role) {
 					case 'KomiteKredit':
-						$state.go('komitekredit');
+						$state.go('komitekredit-home');
 						break;
 
 					case 'CustomerService':
-						$state.go('CustomerService');
+						$state.go('cs-home');
 						break;
 
 					case 'AnalystOfficer':
-						$state.go('AnalystOfficer');
+						$state.go('ao-home');
 						break;
 
 					default:

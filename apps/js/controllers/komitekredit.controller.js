@@ -1,12 +1,15 @@
 angular
 	.module('komitekredit.controller', [])
 	.controller('komitekredit-controller', komitekreditController)
+	.controller('komitekredit-home-controller', komitekreditHomeController)
 	.controller('komitekredit-kritera-controller', KomiteKriteraController)
 	.controller('komitekredit-persyaratan-controller', KomitePersyaratanController)
 	.controller('komitekredit-periode-controller', komitekreditPeriodeController)
 	.controller('komitekredit-periode-detail-controller', komitekreditperiodedetailcontroller);
 
 function komitekreditController() {}
+
+function komitekreditHomeController() {}
 
 function KomiteKriteraController($scope, KriteriaService, swangular, message) {
 	$scope.model = {};

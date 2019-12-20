@@ -1,11 +1,11 @@
 <h4>DAFTAR KRITERIA</h4>
-<div>
+<div class="plusIconContainer">
   <a id="plusIcon" class="btn-floating z-depth-1-half btn-default" data-toggle="modal"
     data-target="#basicExampleModal"><i class="fa fa-plus"></i></a>
 </div>
 
-<table class="table table-striped" cellspacing="0" width="100%">
-  <thead>
+<table class="table " cellspacing="0" width="100%">
+  <thead class="black white-text">
     <tr>
       <th>NO</th>
       <th>Nama Kriteria</th>
@@ -14,7 +14,7 @@
     </tr>
   </thead>
   <tbody ng-repeat="data in datas">
-    <tr>
+    <tr class="blue white-text">
       <td>{{ $index + 1 }}</td>
       <td>{{data.namaKriteria}}</td>
       <td>{{data.bobot}}%</td>
@@ -25,29 +25,31 @@
       </td>
     </tr>
     <tr>
-      <td colspan="4">
+      <td colspan="4" style="padding: 0px 50px 0px 50px;">
         <table class="table">
-          <tr>
-            <th>No</th>
-            <th>Nama Sub Kriteria</th>
-            <th>Nilai</th>
-            <th></th>
-          </tr>
+          <thead class="grey white-text">
+            <tr>
+              <th>No</th>
+              <th>Nama Sub Kriteria</th>
+              <th>Nilai</th>
+              <th></th>
+            </tr>
+          </thead>
           <tr ng-repeat="item in data.subKriteria">
             <td>{{$index+1}}</td>
             <td>{{item.namaSub}}</td>
             <td>{{item.maxNilai}}</td>
             <td class="right-option">
-              
+
               <a ng-click="SelectCriteria(item)" data-toggle="modal" data-target="#subCriteriaModal">Edit</a>
               | <a ng-click="deleteSubCriteria(data)">Delete</a>
             </td>
-            
+
           </tr>
         </table>
       </td>
     </tr>
-   
+
   </tbody>
 </table>
 
@@ -119,12 +121,3 @@
     </div>
   </div>
 </div>
-
-
-<style>
-  #plusIcon {
-    right: 0px;
-    position: absolute;
-    right: 20px;
-  }
-</style>

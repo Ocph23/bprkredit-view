@@ -1,10 +1,18 @@
+.badge {
+  padding: 5px;
+  width: 35px;
+  background-color: #00ceff !important;
+}
+
 .container {
   padding: 20px !important;
 }
 
 .card {
   margin: 5px;
-  background: rgba(255, 255, 255, 0.8) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: black;
+  padding: 20px;
 }
 
 .card .card-header {
@@ -18,10 +26,13 @@
   padding: 10px !important;
 }
 
-#plusIcon {
-  right: 0px;
-  position: absolute;
+.plusIconContainer {
+  text-align: right;
+}
+
+.plusIconContainer #plusIcon {
   right: 20px;
+  margin: 5px;
 }
 
 .right-option {
@@ -138,6 +149,15 @@ body {
   min-height: 100vh;
 }
 
+.user-home {
+  margin: 10%;
+  text-align: center;
+}
+
+.user-home img {
+  margin: 50px;
+}
+
 .account {
   color: grey;
   margin-top: 100px;
@@ -145,12 +165,11 @@ body {
 
 .account .account-card {
   width: 350px;
-  height: 400px;
+  height: 450px;
   padding: 30px;
   margin: auto;
   margin-top: 20px;
-  background: white;
-  opacity: 0.7;
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
 }
 
@@ -159,11 +178,32 @@ body {
 }
 
 .account .account-card .header {
+  display: -ms-grid;
+  display: grid;
   font-size: 30px;
 }
 
+.account .account-card .header h4 {
+  margin-left: 20px;
+}
+
+.account .account-card .header img {
+  -ms-grid-column-align: center;
+      justify-self: center;
+  width: 60%;
+  margin-bottom: 20px;
+}
+
 .account .account-card .account-body {
+  display: -ms-grid;
+  display: grid;
   text-align: center !important;
+}
+
+.account .account-card .account-body form {
+  width: 250px;
+  -ms-grid-column-align: center;
+      justify-self: center;
 }
 
 .account .action {
@@ -290,9 +330,24 @@ a:focus {
 
 #sidebar .sidebar-header {
   padding: 20px;
-  background: transparent;
+  background: white;
+  color: black;
+  display: -ms-grid;
+  display: grid;
   -webkit-box-shadow: 0px 0px 3px 0px #ededed;
           box-shadow: 0px 0px 3px 0px #ededed;
+}
+
+#sidebar .sidebar-header img {
+  -ms-grid-column-align: center;
+      justify-self: center;
+  width: 80%;
+}
+
+#sidebar .sidebar-header h5 {
+  margin-top: 5px;
+  -ms-grid-column-align: center;
+      justify-self: center;
 }
 
 #sidebar ul.components {
