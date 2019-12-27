@@ -7,8 +7,9 @@ angular
 	.controller('ao-periode-detail-controller', Aoperiodedetailcontroller)
 	.controller('ao-hasil-controller', AohasilController);
 
-function AoHomeController($scope, AuthService, $state) {
+function AoHomeController($scope, AuthService, $state, helperServices) {
 	var thisRole = 'AnalystOfficer';
+	helperServices.homeAnimation();
 	if (!AuthService.userIsLogin() || !AuthService.userInRole(thisRole)) {
 		$state.go('login');
 	}
@@ -199,4 +200,12 @@ function Aoperiodedetailcontroller($scope, $stateParams, KriteriaService, Debitu
 	};
 }
 
-function AohasilController($scope, $state, $stateParams) {}
+function AohasilController($scope, $state, $stateParams, PeriodeService) {
+	var id = $stateParams.id;
+	PeriodeService.ProsesWP(id).then(
+		(x) => {
+			$scope.Data = x.data;
+		},
+		(err) => {}
+	);
+}

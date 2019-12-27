@@ -1,8 +1,8 @@
-Post http://testing.stimiksepnop.ac.id/api/Users/Login HTTP/1.1
+Post https://kreditbpr.herokuapp.com/api/Users/Login HTTP/1.1
 content-type: application/json
 
 {
-    "Username":"Candra",
+    "Username":"aji",
     "Password":"123456"
 }
 

@@ -13,7 +13,24 @@
                 </div>
                 <div id="tahap1" class="collapse show" data-parent="#accordion">
                     <div class="card-body">
-
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Debitur</th>
+                                    <th>Kode Alternatif</th>
+                                    <th>Nilai</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in Data.VectorS">
+                                    <td>{{$index+1}}</td>
+                                    <td>{{item.Nama}}</td>
+                                    <td>{{item.Code}}</td>
+                                    <td>{{item.nilai}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -26,7 +43,56 @@
                 </div>
                 <div id="tahap2" class="collapse" data-parent="#accordion">
                     <div class="card-body">
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Debitur</th>
+                                        <th>Kode Alternatif</th>
+                                        <th>Nilai</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in Data.NilaiVector">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{item.Nama}}</td>
+                                        <td>{{item.Code}}</td>
+                                        <td>{{item.nilai}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="card">
+                <div class="card-header">
+                    <a class="collapsed card-link" data-toggle="collapse" data-target="#tahap3">
+                        HASIL PERENGKINGAN
+                    </a>
+                </div>
+                <div id="tahap3" class="collapse" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Debitur</th>
+                                        <th>Nilai</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in Data.NilaiVector |orderBy:'-nilai'">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{item.Nama}}</td>
+                                        <td>{{item.nilai}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

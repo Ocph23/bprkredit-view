@@ -1,0 +1,6 @@
+
+Get https://kreditbpr.herokuapp.com/api/ProsesWP/1 HTTP/1.1
+content-type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEwIiwiVXNlcm5hbWUiOiJBamkiLCJFbWFpbCI6IktyaXN0dH9BamlAZ21haWwuY29tIiwiTmFtYSI6IkFqaSBTYWphIiwiUm9sZSI6IkFuYWx5c3RPZmZpY2VyIiwidGltZSI6MTU3NzM1NTM0NX0.2FEbqEgKDOThSqbVOzsgf7b_3YoJZZSBIuy6kIriW3Y
+
+####

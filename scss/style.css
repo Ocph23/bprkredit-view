@@ -1,3 +1,16 @@
+.user-home .logo-body {
+  width: 25px;
+}
+
+.user-home h1 {
+  font-size: 7px;
+  margin-top: 20px;
+}
+
+.user-home h2 {
+  font-size: 5px;
+}
+
 .badge {
   padding: 5px;
   width: 35px;

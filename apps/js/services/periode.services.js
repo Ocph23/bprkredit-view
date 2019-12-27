@@ -11,8 +11,28 @@ function PeriodeService(AuthService, $q, $http, message, helperServices) {
 		getById: getDatabyId,
 		post: postData,
 		put: putData,
-		remove: removeData
+		remove: removeData,
+		ProsesWP: processWP
 	};
+
+	function processWP(id) {
+		var def = $q.defer();
+
+		$http({
+			method: 'GET',
+			url: helperServices.url + '/api/ProsesWP/' + id,
+			headers: AuthService.getHeader()
+		}).then(
+			(x) => {
+				def.resolve(x.data);
+			},
+			(err) => {
+				helperServices.errorHandler(err);
+				def.reject(err);
+			}
+		);
+		return def.promise;
+	}
 
 	function getData() {
 		var def = $q.defer();

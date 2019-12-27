@@ -9,7 +9,9 @@ angular
 
 function komitekreditController() {}
 
-function komitekreditHomeController() {}
+function komitekreditHomeController(helperServices) {
+	helperServices.homeAnimation();
+}
 
 function KomiteKriteraController($scope, KriteriaService, swangular, message) {
 	$scope.model = {};

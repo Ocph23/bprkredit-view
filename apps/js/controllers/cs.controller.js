@@ -13,7 +13,9 @@ function CsController(AuthService, $state) {
 	}
 }
 
-function CsHomeController() {}
+function CsHomeController(helperServices) {
+	helperServices.homeAnimation();
+}
 
 function CsEditDebiturController($scope, $stateParams, $state, DebiturService, message, PersyaratanService) {
 	$scope.model = $stateParams.debitur;
