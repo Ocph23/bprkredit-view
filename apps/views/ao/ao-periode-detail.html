@@ -1,10 +1,11 @@
 <h4>Detail Periode Penilaian</h4>
-<div>
+<h6>Periode : {{periode.periode}}</h6>
+<h6>Status : {{periode.status}}</h6>
+<div style="text-align: right;">
   <a ng-show="periode.status==='AKTIF'" id="plusIcon" class="btn-floating z-depth-1-half btn-default"
     data-toggle="modal" data-target="#basicExampleModal"><i class="fa fa-plus"></i></a>
 </div>
-<h6>Periode : {{periode.periode}}</h6>
-<h6>Status : {{periode.status}}</h6>
+
 
 <div id="accordion">
   <div class="card" ng-repeat="debitur in periode.debitur">
@@ -29,8 +30,8 @@
             </tr>
             <tr class="subitem" ng-repeat="sub in kriteria.subKriteria">
               <td subitem></td>
-              <td subitem>{{$index+1}}. {{sub.namaSub}}</td>
-              <td><input ng-model="sub.nilai" type="number"></td>
+              <td subitem>{{$index+1}}. {{sub.namaSub}} ({{sub.maxNilai}})</td>
+              <td><input style="width: 100px;" class="form-control" ng-model="sub.nilai" type="number"></td>
             </tr>
           </tbody>
         </table>

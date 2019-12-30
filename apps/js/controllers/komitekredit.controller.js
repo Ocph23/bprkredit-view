@@ -14,6 +14,7 @@ function komitekreditHomeController(helperServices) {
 }
 
 function KomiteKriteraController($scope, KriteriaService, swangular, message) {
+	$('label').addClass('active');
 	$scope.model = {};
 	KriteriaService.get().then((x) => {
 		$scope.datas = x;
@@ -21,11 +22,32 @@ function KomiteKriteraController($scope, KriteriaService, swangular, message) {
 
 	$scope.edit = function(data) {
 		$scope.model = data;
+		$scope.model.bobot = parseInt(data.bobot);
 	};
 
 	$scope.save = function(data) {
 		$scope.saveSpin = true;
-		if (data.idkriteria == undefined) {
+		var sumBobot = 0;
+		$scope.datas.forEach((element) => {
+			sumBobot += parseInt(element.bobot);
+		});
+
+		if (sumBobot > 100) {
+			$('#basicExampleModal').modal('hide');
+			swangular.swal(
+				{
+					title: 'Error',
+					text: 'Total Bobot Tidak Boleh Lebih Dari 100 %',
+					type: 'error'
+				},
+				(err) => {
+					$scope.saveSpin = false;
+				}
+			);
+
+			$scope.saveSpin = false;
+			$scope.model = {};
+		} else if (data.idkriteria == undefined) {
 			KriteriaService.post(data).then((x) => {
 				$('#basicExampleModal').modal('hide');
 				swangular.swal(
@@ -71,6 +93,7 @@ function KomiteKriteraController($scope, KriteriaService, swangular, message) {
 
 	$scope.SelectCriteria = function(item) {
 		$scope.SelectedCriteria = item;
+		$scope.SelectedCriteria.maxNilai = parseInt(item.maxNilai);
 	};
 
 	$scope.saveSubCriteria = function(data) {

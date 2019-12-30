@@ -146,20 +146,31 @@ function DebiturService(AuthService, helperServices, $q, $http, message) {
 
 	function savePenilaian(idperiode, model) {
 		var def = $q.defer();
-		$http({
-			method: 'POST',
-			url: helperServices.url + '/api/DataKriteria?iddebitur=' + model.iddebitur + '&idperiode=' + idperiode,
-			headers: AuthService.getHeader(),
-			data: model.kriteria
-		}).then(
-			(x) => {
-				def.resolve(x.data);
-			},
-			(err) => {
-				helperServices.errorHandler(err);
-				def.reject(err);
-			}
-		);
+		try {
+			model.kriteria.forEach((kriteria) => {
+				kriteria.subKriteria.forEach((sub) => {
+					if (!sub.nilai) throw Error('nilai tidak boleh kosong');
+					if (sub.nilai > sub.maxNilai) throw Error('nilai tidak boleh lebih besar dari nilai maksimum');
+				});
+			});
+
+			$http({
+				method: 'POST',
+				url: helperServices.url + '/api/DataKriteria?iddebitur=' + model.iddebitur + '&idperiode=' + idperiode,
+				headers: AuthService.getHeader(),
+				data: model.kriteria
+			}).then(
+				(x) => {
+					def.resolve(x.data);
+				},
+				(err) => {
+					throw Error(err.message);
+				}
+			);
+		} catch (err) {
+			helperServices.errorHandler(err);
+			def.reject(err);
+		}
 
 		return def.promise;
 	}

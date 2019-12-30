@@ -170,7 +170,7 @@ body {
 }
 
 .account {
-  color: grey;
+  color: rgb(0, 0, 0);
   margin-top: 100px;
   .account-card {
     width: 350px;
@@ -180,6 +180,7 @@ body {
     margin-top: 20px;
     background: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
+    box-shadow: 5px 4px 7px 0px rgba(230, 230, 230, 0.64);
     i {
       color: grey;
     }
@@ -187,11 +188,13 @@ body {
       display: grid;
       font-size: 30px;
       h4 {
+        margin-top: 20px;
         margin-left: 20px;
       }
       img {
         justify-self: center;
         width: 60%;
+        margin-top: 20px;
         margin-bottom: 20px;
       }
     }

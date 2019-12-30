@@ -17,7 +17,7 @@
     <tr class="blue white-text">
       <td>{{ $index + 1 }}</td>
       <td>{{data.namaKriteria}}</td>
-      <td>{{data.bobot}}%</td>
+      <td>{{data.bobot}} %</td>
       <td class="right-option">
         <a ng-click="SelectCriteria(data)" data-toggle="modal" data-target="#subCriteriaModal">Tambah Sub</a>
         | <a ng-click="edit(data)" data-toggle="modal" data-target="#basicExampleModal">Edit</a>
@@ -31,7 +31,7 @@
             <tr>
               <th>No</th>
               <th>Nama Sub Kriteria</th>
-              <th>Nilai</th>
+              <th>Nilai Maksimum</th>
               <th></th>
             </tr>
           </thead>
@@ -106,7 +106,7 @@
             <input type="text" class="form-control active" ng-model="SelectedCriteria.namaSub" required />
           </div>
           <div class="md-form">
-            <label>Bobot</label>
+            <label>Nilai Maksimum</label>
             <input type="number" class="form-control active" ng-model="SelectedCriteria.maxNilai" required />
           </div>
           <div class="modal-footer">

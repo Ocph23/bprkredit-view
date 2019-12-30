@@ -172,7 +172,7 @@ body {
 }
 
 .account {
-  color: grey;
+  color: black;
   margin-top: 100px;
 }
 
@@ -184,6 +184,8 @@ body {
   margin-top: 20px;
   background: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
+  -webkit-box-shadow: 5px 4px 7px 0px rgba(230, 230, 230, 0.64);
+          box-shadow: 5px 4px 7px 0px rgba(230, 230, 230, 0.64);
 }
 
 .account .account-card i {
@@ -197,6 +199,7 @@ body {
 }
 
 .account .account-card .header h4 {
+  margin-top: 20px;
   margin-left: 20px;
 }
 
@@ -204,6 +207,7 @@ body {
   -ms-grid-column-align: center;
       justify-self: center;
   width: 60%;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 

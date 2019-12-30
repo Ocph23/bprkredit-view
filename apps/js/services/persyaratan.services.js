@@ -94,7 +94,7 @@ function PersyaratanService(AuthService, $q, $http, message, helperServices) {
 				data: params
 			}).then(
 				(res) => {
-					var dataInCollection = datas.find((x) => x.idpersyaratan == params.idpersyaratan);
+					var dataInCollection = service.datas.find((x) => x.idpersyaratan == params.idpersyaratan);
 					if (dataInCollection) {
 						dataInCollection.nama = params.nama;
 						def.resolve(res.data);

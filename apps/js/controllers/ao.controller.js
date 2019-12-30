@@ -190,7 +190,9 @@ function Aoperiodedetailcontroller($scope, $stateParams, KriteriaService, Debitu
 
 	$scope.selectNewDebitur = function(data) {
 		$('#basicExampleModal').modal('hide');
-		$scope.periode.debitur.push(data);
+		var item = {};
+		angular.copy(data, item);
+		$scope.periode.debitur.push(item);
 		var index = $scope.dataDebitur.indexOf(data);
 		$scope.dataDebitur.slice(index, 1);
 	};
