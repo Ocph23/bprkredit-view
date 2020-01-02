@@ -1,3 +1,10 @@
+@media print {
+  .no-print,
+  .no-print * {
+    display: none !important;
+  }
+}
+
 .user-home .logo-body {
   width: 25px;
 }

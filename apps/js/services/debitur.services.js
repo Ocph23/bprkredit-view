@@ -103,7 +103,7 @@ function DebiturService(AuthService, helperServices, $q, $http, message) {
 				data: params
 			}).then(
 				(res) => {
-					var dataInCollection = datas.find((x) => x.idpersyaratan == params.iddebitur);
+					var dataInCollection = service.datas.find((x) => x.idpersyaratan == params.iddebitur);
 					if (dataInCollection) {
 						dataInCollection.nama = res.data.nama;
 						def.resolve(res.data);
@@ -130,16 +130,16 @@ function DebiturService(AuthService, helperServices, $q, $http, message) {
 				headers: AuthService.getHeader()
 			}).then(
 				(x) => {
-					var index = datas.indexOf(params);
-					datas.splice(index, 1);
+					var index = service.datas.indexOf(params);
+					service.datas.splice(index, 1);
 					def.resolve(true);
 				},
 				(err) => {
-					helperServices.errorHandler(err);
+					helperServices.errorHandler(err, 'Data Tidak Berhasil Dihapus');
 				}
 			);
 		} catch (err) {
-			helperServices.errorHandler(err);
+			helperServices.errorHandler(err, 'Data Tidak Berhasil Dihapus');
 		}
 		return def.promise;
 	}

@@ -152,7 +152,7 @@ function PersyaratanService(AuthService, $q, $http, message, helperServices) {
 				def.resolve(x.data);
 			},
 			(err) => {
-				helperServices.errorHandler(err);
+				helperServices.errorHandler(err, 'Data Tidak Berhasil Disimpan');
 				def.reject(err);
 			}
 		);

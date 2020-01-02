@@ -30,16 +30,16 @@ function CsEditDebiturController($scope, $stateParams, $state, DebiturService, m
 	});
 	PersyaratanService.get().then(
 		(x) => {
-			if ($scope.model.persyaratan.length <= 0) {
-				x.forEach((element) => {
+			x.forEach((element) => {
+				var items = $scope.model.persyaratan.find((x) => x.idpersyaratan == element.idPersyaratan);
+				if (!items) {
 					element.nilai = 0;
 					$scope.model.persyaratan.push(element);
-				});
-			} else {
-				$scope.model.persyaratan.forEach((element) => {
-					element.nilai = Boolean(element.nilai);
-				});
-			}
+				}
+			});
+			$scope.model.persyaratan.forEach((element) => {
+				element.nilai = Boolean(element.nilai);
+			});
 		},
 		(err) => {}
 	);
@@ -115,6 +115,8 @@ function CsDebiturController($scope, DebiturService, PersyaratanService, message
 			(x) => {
 				DebiturService.remove(data).then((z) => {
 					message.info('Berhasil Dihapus');
+					var index = $scope.datas.indexOf(data);
+					$scope.datas.splice(index, 1);
 				});
 			},
 			(cancel) => {}

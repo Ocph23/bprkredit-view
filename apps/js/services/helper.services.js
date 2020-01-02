@@ -8,8 +8,11 @@ function helperServices(message) {
 
 	return { url: service.url, spinner: service.spinner, errorHandler: errorHandler, homeAnimation: homeAnimation };
 
-	function errorHandler(err) {
-		message.error(err.message, err.status);
+	function errorHandler(err, msg) {
+		if (err.status) message.error(err.message, err.status);
+		else {
+			message.error(msg, null);
+		}
 	}
 
 	function homeAnimation() {

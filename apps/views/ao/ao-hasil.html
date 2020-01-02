@@ -3,7 +3,9 @@
         <div class="title">
             REPORT PENILAIAN
         </div>
-
+        <div class="no-print">
+            <button ng-click="print()" class="btn btn-success">Print</button>
+        </div>
         <div id="accordion">
             <div class="card">
                 <div class="card-header">
@@ -41,7 +43,7 @@
                         UJI TAHAP 2
                     </a>
                 </div>
-                <div id="tahap2" class="collapse" data-parent="#accordion">
+                <div id="tahap2" class="collapse show" data-parent="#accordion">
                     <div class="card-body">
                         <div class="card-body">
                             <table class="table table-bordered">
@@ -73,7 +75,7 @@
                         HASIL PERENGKINGAN
                     </a>
                 </div>
-                <div id="tahap3" class="collapse" data-parent="#accordion">
+                <div id="tahap3" class="collapse show" data-parent="#accordion">
                     <div class="card-body">
                         <div class="card-body">
                             <table class="table table-bordered">
@@ -96,6 +98,9 @@
                     </div>
                 </div>
             </div>
+
+
+
         </div>
     </div>
 </div>

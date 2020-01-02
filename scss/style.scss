@@ -3,8 +3,13 @@ $color-secound: rgba(0, 206, 255, 1);
 $color-mainGradient: linear-gradient(90deg, rgba(52, 52, 182, 1) 0%, rgba(0, 206, 255, 1) 100%);
 $var1: 1;
 
-:root {
+@media print {
+  .no-print,
+  .no-print * {
+    display: none !important;
+  }
 }
+
 .user-home {
   .logo-body {
     width: 25px;

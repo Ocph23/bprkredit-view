@@ -56,24 +56,23 @@ function AoDebiturController($scope, DebiturService, message) {
 function AoDetailDebiturController($scope, $stateParams, $state, DebiturService, PersyaratanService, message) {
 	$scope.model = $stateParams.debitur;
 	$('label').addClass('active');
-	$('#datepicker').datepicker({
-		weekStart: 1,
-		format: 'dd/mm/yyyy',
-		daysOfWeekHighlighted: '6,0',
-		autoclose: true,
-		todayHighlight: true
-	});
+
 	PersyaratanService.get().then((persyaratan) => {
 		$scope.persyaratans = [];
-		persyaratan.forEach((element) => {
-			var dataValue = angular.copy(element);
-			var isFound = debitur.persyaratans.find((x) => x.idPersyaratan === element.idPersyaratan);
-			if (isFound) {
-				dataValue.value = true;
-			} else {
-				dataValue.value = false;
+		PersyaratanService.getDataPersyaratan().then((debiturs) => {
+			var debitur = debiturs.find((x) => x.iddebitur === $scope.model.iddebitur);
+			if (debitur) {
+				persyaratan.forEach((element) => {
+					var dataValue = angular.copy(element);
+					var isFound = debitur.persyaratan.find((x) => x.idpersyaratan === element.idpersyaratan);
+					if (isFound) {
+						dataValue.nilai = Boolean(isFound.nilai);
+					} else {
+						dataValue.nilai = false;
+					}
+					$scope.persyaratans.push(dataValue);
+				});
 			}
-			$scope.persyaratans.push(dataValue);
 		});
 	});
 
@@ -210,4 +209,10 @@ function AohasilController($scope, $state, $stateParams, PeriodeService) {
 		},
 		(err) => {}
 	);
+
+	$scope.print = function() {
+		setTimeout((x) => {
+			window.print();
+		}, 500);
+	};
 }
