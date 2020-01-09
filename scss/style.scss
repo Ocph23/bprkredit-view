@@ -460,3 +460,9 @@ a.article:hover {
   opacity: 1;
   margin: 5px auto;
 }
+
+.tbodyScroll {
+  height: 200px !important; /* Just for the demo          */
+  overflow-y: scroll; /* Trigger vertical scroll    */
+  overflow-x: hidden; /* Hide the horizontal scroll */
+}

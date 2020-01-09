@@ -19,7 +19,7 @@
       <td>{{ data.periode }}</td>
       <td>{{ data.status }}</td>
       <th class="right-option">
-        <a ui-sref="ao-periode-detail({periode:data})">Detail</a> |
+        <a ui-sref="ao-periode-detail({id:data.periode})">Detail</a> |
         <a ng-click="edit(data)" data-toggle="modal" data-target="#basicExampleModal">Edit</a>
       </th>
     </tr>
@@ -41,7 +41,7 @@
         <form style="margin-left: 10px;margin-right:10px;" ng-submit="save(model);saveSpin=true;">
           <div class="md-form">
             <label>periode</label>
-            <input type="text" class="form-control" ng-model="model.nama" required />
+            <input type="text" class="form-control" ng-model="model.periode" required />
 
           </div>
           <div class="md-form">

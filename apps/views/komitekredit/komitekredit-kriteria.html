@@ -3,55 +3,60 @@
   <a id="plusIcon" class="btn-floating z-depth-1-half btn-default" data-toggle="modal"
     data-target="#basicExampleModal"><i class="fa fa-plus"></i></a>
 </div>
+<div class="vertical_scroll">
+  <table class="table" cellspacing="0" style="height: 50vh;">
+    <thead class="black white-text">
+      <tr>
+        <th>NO</th>
+        <th>Nama Kriteria</th>
+        <th>Bobot</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="data in datas">
+      <tr class="blue white-text" data-toggle="collapse" data-target="#collapseExample{{data.namaKriteria}}">
+        <td>
+          {{ $index + 1 }}</td>
+        <td>{{data.namaKriteria}}</td>
+        <td>{{data.bobot}} %</td>
+        <td class="right-option">
+          <a ng-click="SelectCriteria(data)" data-toggle="modal" data-target="#subCriteriaModal">Tambah Sub</a>
 
-<table class="table " cellspacing="0" width="100%">
-  <thead class="black white-text">
-    <tr>
-      <th>NO</th>
-      <th>Nama Kriteria</th>
-      <th>Bobot</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody ng-repeat="data in datas">
-    <tr class="blue white-text">
-      <td>{{ $index + 1 }}</td>
-      <td>{{data.namaKriteria}}</td>
-      <td>{{data.bobot}} %</td>
-      <td class="right-option">
-        <a ng-click="SelectCriteria(data)" data-toggle="modal" data-target="#subCriteriaModal">Tambah Sub</a>
-        | <a ng-click="edit(data)" data-toggle="modal" data-target="#basicExampleModal">Edit</a>
-        | <a ng-click="delete(data)">Delete</a>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="4" style="padding: 0px 50px 0px 50px;">
-        <table class="table">
-          <thead class="grey white-text">
-            <tr>
-              <th>No</th>
-              <th style="width: 50%;">Nama Sub Kriteria</th>
-              <th>Nilai Maksimum</th>
-              <th></th>
+          | <a ng-click="edit(data)" data-toggle="modal" data-target="#basicExampleModal">Edit</a>
+          | <a ng-click="delete(data)">Delete</a>
+        </td>
+      </tr>
+      <tr class="collapse" id="collapseExample{{data.namaKriteria}}">
+        <td colspan="4" style="padding: 0px 50px 0px 50px;">
+          <table class="table">
+            <thead class="grey white-text">
+              <tr>
+                <th>No</th>
+                <th style="width: 50%;">Nama Sub Kriteria</th>
+                <th>Nilai Maksimum</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tr ng-repeat="item in data.subKriteria">
+              <td>{{$index+1}}</td>
+              <td>{{item.namaSub}}</td>
+              <td>{{item.maxNilai}}</td>
+              <td class="right-option">
+
+                <a ng-click="SelectCriteria(item)" data-toggle="modal" data-target="#subCriteriaModal">Edit</a>
+                | <a ng-click="deleteSubCriteria(data)">Delete</a>
+              </td>
+
             </tr>
-          </thead>
-          <tr ng-repeat="item in data.subKriteria">
-            <td>{{$index+1}}</td>
-            <td>{{item.namaSub}}</td>
-            <td>{{item.maxNilai}}</td>
-            <td class="right-option">
+          </table>
+        </td>
+      </tr>
 
-              <a ng-click="SelectCriteria(item)" data-toggle="modal" data-target="#subCriteriaModal">Edit</a>
-              | <a ng-click="deleteSubCriteria(data)">Delete</a>
-            </td>
+    </tbody>
+  </table>
 
-          </tr>
-        </table>
-      </td>
-    </tr>
+</div>
 
-  </tbody>
-</table>
 
 <!-- Modal -->
 <div class="modal fade" data-backdrop="false" id="basicExampleModal" tabindex="-1" role="dialog"

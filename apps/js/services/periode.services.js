@@ -66,13 +66,13 @@ function PeriodeService(AuthService, $q, $http, message, helperServices) {
 		var def = $q.defer();
 		$http({
 			method: 'POST',
-			url: helperServices.url + '/api/periode',
+			url: helperServices.url + '/api/Periode',
 			headers: AuthService.getHeader(),
 			data: params
 		}).then(
 			(x) => {
 				params.idpersyaratan = x.data.data;
-				datas.push(params);
+				service.datas.push(params);
 				def.resolve(x.data);
 			},
 			(err) => {

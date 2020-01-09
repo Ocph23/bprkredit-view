@@ -87,9 +87,8 @@ angular.module('app.router', [ 'ui.router' ]).config(function($stateProvider, $u
 			templateUrl: '../apps/views/ao/ao-hasil.html'
 		})
 		.state('ao-periode-detail', {
-			url: '/periode-detail/{periode:json}',
+			url: '/periode-detail/:id',
 			parent: 'AnalystOfficer',
-			params: null,
 			controller: 'ao-periode-detail-controller',
 			templateUrl: '../apps/views/ao/ao-periode-detail.html'
 		})

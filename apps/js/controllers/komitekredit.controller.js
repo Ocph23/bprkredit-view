@@ -83,6 +83,10 @@ function KomiteKriteraController($scope, KriteriaService, swangular, message) {
 		}
 	};
 
+	$scope.showhide = function() {
+		$('#collapseExample');
+	};
+
 	$scope.delete = function(data) {
 		KriteriaService.remove(data).then((z) => {
 			message.info('Berhasil Dihapus');

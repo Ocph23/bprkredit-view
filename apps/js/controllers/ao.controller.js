@@ -1,3 +1,5 @@
+'use strict';
+
 angular
 	.module('ao.controller', [])
 	.controller('ao-home-controller', AoHomeController)
@@ -148,44 +150,39 @@ function AoPeriodeController($scope, PeriodeService) {
 	};
 }
 
-function Aoperiodedetailcontroller($scope, $stateParams, KriteriaService, DebiturService) {
-	$scope.periode = $stateParams.periode;
-	if ($scope.periode.debitur.length > 0) {
-		$scope.periode.debitur.forEach((debitur) => {
-			if (debitur.kriteria.length > 0) {
-				debitur.kriteria.forEach((kriteria) => {
-					kriteria.subKriteria.forEach((sub) => {
-						sub.nilai = parseInt(sub.nilai);
-					});
-				});
-			}
-		});
-	}
+function Aoperiodedetailcontroller($scope, $stateParams, DebiturService, KriteriaService, PeriodeService) {
+	PeriodeService.get().then((x) => {
+		$scope.periode = x.find((x) => x.periode === $stateParams.id);
+		$scope.dataDebitur = [];
+		DebiturService.get().then(
+			(d) => {
+				KriteriaService.get().then(
+					(x) => {
+						var dd = d;
+						dd.forEach((debitur) => {
+							var found = false;
+							var res = $scope.periode.debitur.find((m) => m.iddebitur == debitur.iddebitur);
+							if (!res) {
+								debitur.kriteria = x;
+								debitur.kriteria.forEach((k) => {
+									k.subKriteria.forEach((element) => {
+										element.nilai = 0;
+									});
+								});
 
-	$scope.dataDebitur = [];
-	KriteriaService.get().then(
-		(x) => {
-			DebiturService.get().then(
-				(d) => {
-					d.forEach((debitur) => {
-						var found = false;
-						$scope.periode.debitur.forEach((debiturInPeriode) => {
-							if (debitur.iddebitur === debiturInPeriode.iddebitur) {
-								found = true;
-								return;
+								$scope.dataDebitur.push(debitur);
 							}
+							// else {
+							// 	$scope.dataDebitur.push(res);
+							// }
 						});
-						if (!found) {
-							debitur.kriteria = x;
-							$scope.dataDebitur.push(debitur);
-						}
-					});
-				},
-				(err) => {}
-			);
-		},
-		(err) => {}
-	);
+					},
+					(err) => {}
+				);
+			},
+			(err) => {}
+		);
+	});
 
 	$scope.selectNewDebitur = function(data) {
 		$('#basicExampleModal').modal('hide');

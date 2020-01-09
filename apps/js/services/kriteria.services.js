@@ -179,7 +179,7 @@ function KriteriaService(AuthService, $q, $http, message, helperServices) {
 			message
 				.dialogDelete(
 					'Yakin Hapus Data ? ',
-					helperServices.url + '/api/SubKriteria/' + params.idkriteria,
+					helperServices.url + '/api/SubKriteria/' + params.idSubKriteria,
 					AuthService.getHeader()
 				)
 				.then(
