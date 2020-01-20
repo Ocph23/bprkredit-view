@@ -97,7 +97,7 @@ function PeriodeService(AuthService, $q, $http, message, helperServices) {
 				data: params
 			}).then(
 				(res) => {
-					var dataInCollection = datas.find((x) => x.idperiode == params.idperiode);
+					var dataInCollection = service.datas.find((x) => x.idperiode == params.idperiode);
 					if (dataInCollection) {
 						dataInCollection.periode = params.periode;
 						dataInCollection.status = params.status;
@@ -128,7 +128,7 @@ function PeriodeService(AuthService, $q, $http, message, helperServices) {
 				)
 				.then(
 					(x) => {
-						var index = datas.indexOf(params);
+						var index = service.datas.indexOf(params);
 						datas.splice(index, 1);
 						def.resolve(true);
 					},

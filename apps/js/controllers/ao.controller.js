@@ -86,7 +86,7 @@ function AoDetailDebiturController($scope, $stateParams, $state, DebiturService,
 	};
 }
 
-function AoPeriodeController($scope, PeriodeService, DTOptionsBuilder) {
+function AoPeriodeController($scope, PeriodeService, DTOptionsBuilder, swangular) {
 	$scope.model = {};
 	$scope.dtMasterOptions = DTOptionsBuilder.newOptions().withOption('processing', true);
 	$('label').addClass('active');
@@ -151,7 +151,7 @@ function AoPeriodeController($scope, PeriodeService, DTOptionsBuilder) {
 	};
 }
 
-function Aoperiodedetailcontroller($scope, $stateParams, DebiturService, KriteriaService, PeriodeService) {
+function Aoperiodedetailcontroller($scope, $stateParams, DebiturService, KriteriaService, PeriodeService, swangular) {
 	PeriodeService.get().then((x) => {
 		$scope.periode = x.find((z) => z.idperiode == $stateParams.id);
 		var array = Object.keys($scope.periode.debitur).map((item) => $scope.periode.debitur[item]);
@@ -198,7 +198,16 @@ function Aoperiodedetailcontroller($scope, $stateParams, DebiturService, Kriteri
 	};
 
 	$scope.save = function(debitur) {
-		DebiturService.savePenilaian($scope.periode.idperiode, debitur).then((x) => {}, (err) => {});
+		DebiturService.savePenilaian($scope.periode.idperiode, debitur).then(
+			(x) => {
+				swangular.swal({
+					title: 'Sukses',
+					text: 'Data Berhasil Diubah',
+					type: 'info'
+				});
+			},
+			(err) => {}
+		);
 	};
 }
 
