@@ -20,8 +20,7 @@
         <td>{{data.namaKriteria}}</td>
         <td>{{data.bobot}} %</td>
         <td class="right-option">
-          <a ng-click="SelectCriteria(data)" data-toggle="modal" data-target="#subCriteriaModal">Tambah Sub</a>
-
+          <a ng-click="SelectCriteria(data);model={}" data-toggle="modal" data-target="#subCriteriaModal">Tambah Sub</a>
           | <a ng-click="edit(data)" data-toggle="modal" data-target="#basicExampleModal">Edit</a>
           | <a ng-click="delete(data)">Delete</a>
         </td>
@@ -43,7 +42,7 @@
               <td>{{item.maxNilai}}</td>
               <td class="right-option">
 
-                <a ng-click="SelectCriteria(item)" data-toggle="modal" data-target="#subCriteriaModal">Edit</a>
+                <a ng-click="SelectSubCriteria(item)" data-toggle="modal" data-target="#subCriteriaModal">Edit</a>
                 | <a ng-click="deleteSubCriteria(data,item)">Delete</a>
               </td>
 
@@ -105,14 +104,14 @@
         </button>
       </div>
       <div class="modal-body">
-        <form style="margin-left: 10px;margin-right:10px;" ng-submit="saveSubCriteria(SelectedCriteria);saveSpin=true">
+        <form style="margin-left: 10px;margin-right:10px;" ng-submit="saveSubCriteria(model);saveSpin=true">
           <div class="md-form">
             <label>Nama Kriteria</label>
-            <input type="text" class="form-control active" ng-model="SelectedCriteria.namaSub" required />
+            <input type="text" class="form-control active" ng-model="model.namaSub" required />
           </div>
           <div class="md-form">
             <label>Nilai Maksimum</label>
-            <input type="number" class="form-control active" ng-model="SelectedCriteria.maxNilai" required />
+            <input type="number" class="form-control active" ng-model="model.maxNilai" required />
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">

@@ -31,7 +31,7 @@ function CsEditDebiturController($scope, $stateParams, $state, DebiturService, m
 	PersyaratanService.get().then(
 		(x) => {
 			x.forEach((element) => {
-				var items = $scope.model.persyaratan.find((x) => x.idpersyaratan == element.idPersyaratan);
+				var items = $scope.model.persyaratan.find((x) => x.idpersyaratan == element.idpersyaratan);
 				if (!items) {
 					element.nilai = 0;
 					$scope.model.persyaratan.push(element);

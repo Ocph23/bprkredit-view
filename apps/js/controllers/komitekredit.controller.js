@@ -100,6 +100,11 @@ function KomiteKriteraController($scope, KriteriaService, swangular, message) {
 		$scope.SelectedCriteria.maxNilai = parseInt(item.maxNilai);
 	};
 
+	$scope.SelectSubCriteria = function(data) {
+		$scope.model = data;
+		$scope.model.maxNilai = parseInt(data.maxNilai);
+	};
+
 	$scope.saveSubCriteria = function(data) {
 		$scope.saveSpin = true;
 		if (data.idSubKriteria == undefined) {
@@ -120,6 +125,7 @@ function KomiteKriteraController($scope, KriteriaService, swangular, message) {
 				$scope.saveSpin = false;
 				data.idSubKriteria = x.data;
 				$scope.SelectedCriteria.subKriteria.push(data);
+				$scope.model = {};
 			});
 		} else {
 			KriteriaService.putSubCriteria(data).then((x) => {
