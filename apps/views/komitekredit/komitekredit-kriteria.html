@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody ng-repeat="data in datas">
-      <tr class="blue white-text" data-toggle="collapse" data-target="#collapseExample{{data.namaKriteria}}">
+      <tr class="blue white-text" data-toggle="collapse" data-target="#collapseExample{{data.idkriteria}}">
         <td>
           {{ $index + 1 }}</td>
         <td>{{data.namaKriteria}}</td>
@@ -26,7 +26,7 @@
           | <a ng-click="delete(data)">Delete</a>
         </td>
       </tr>
-      <tr class="collapse" id="collapseExample{{data.namaKriteria}}">
+      <tr class="collapse" id="collapseExample{{data.idkriteria}}">
         <td colspan="4" style="padding: 0px 50px 0px 50px;">
           <table class="table">
             <thead class="grey white-text">
@@ -44,7 +44,7 @@
               <td class="right-option">
 
                 <a ng-click="SelectCriteria(item)" data-toggle="modal" data-target="#subCriteriaModal">Edit</a>
-                | <a ng-click="deleteSubCriteria(data)">Delete</a>
+                | <a ng-click="deleteSubCriteria(item)">Delete</a>
               </td>
 
             </tr>

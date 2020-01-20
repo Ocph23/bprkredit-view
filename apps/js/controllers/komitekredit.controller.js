@@ -139,6 +139,10 @@ function KomiteKriteraController($scope, KriteriaService, swangular, message) {
 			});
 		}
 	};
+
+	$scope.deleteSubCriteria = function(data) {
+		KriteriaService.removeSubCriteria(data).then((x) => {});
+	};
 }
 
 function KomitePersyaratanController($scope, PersyaratanService, swangular, message) {

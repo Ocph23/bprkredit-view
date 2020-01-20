@@ -132,8 +132,6 @@ function KriteriaService(AuthService, $q, $http, message, helperServices) {
 		}).then(
 			(x) => {
 				params.idkriteria = x.data.data;
-				service.datas.push(params);
-
 				def.resolve(x.data);
 			},
 			(err) => {

@@ -124,8 +124,8 @@ function PersyaratanService(AuthService, $q, $http, message, helperServices) {
 				)
 				.then(
 					(x) => {
-						var index = datas.indexOf(params);
-						datas.splice(index, 1);
+						var index = service.datas.indexOf(params);
+						service.datas.splice(index, 1);
 						def.resolve(true);
 					},
 					(err) => {

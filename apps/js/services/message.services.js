@@ -110,11 +110,7 @@ function MessageServices(swangular, $q, $http) {
 						def.resolve(true);
 					}
 				} catch (err) {
-					swangular.swal({
-						title: 'Error',
-						text: 'Data Tidak Berhasil Dihapus',
-						type: 'error'
-					});
+					def.reject(err);
 				}
 			},
 			allowOutsideClick: () => !Swal.isLoading()
