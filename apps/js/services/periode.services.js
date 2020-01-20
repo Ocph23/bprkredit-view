@@ -72,6 +72,9 @@ function PeriodeService(AuthService, $q, $http, message, helperServices) {
 		}).then(
 			(x) => {
 				params.idpersyaratan = x.data.data;
+				service.datas.forEach((element) => {
+					element.status = 'Tidak Aktif';
+				});
 				service.datas.push(params);
 				def.resolve(x.data);
 			},

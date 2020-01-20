@@ -86,8 +86,9 @@ function AoDetailDebiturController($scope, $stateParams, $state, DebiturService,
 	};
 }
 
-function AoPeriodeController($scope, PeriodeService) {
+function AoPeriodeController($scope, PeriodeService, DTOptionsBuilder) {
 	$scope.model = {};
+	$scope.dtMasterOptions = DTOptionsBuilder.newOptions().withOption('processing', true);
 	$('label').addClass('active');
 	$scope.swichstatus = true;
 	$scope.model.status = 'AKTIF';
@@ -153,10 +154,11 @@ function AoPeriodeController($scope, PeriodeService) {
 function Aoperiodedetailcontroller($scope, $stateParams, DebiturService, KriteriaService, PeriodeService) {
 	PeriodeService.get().then((x) => {
 		$scope.periode = x.find((z) => z.idperiode == $stateParams.id);
+		var array = Object.keys($scope.periode.debitur).map((item) => $scope.periode.debitur[item]);
+		$scope.periode.debitur = array;
 		$scope.dataDebitur = [];
 		DebiturService.get().then(
 			(d) => {
-				var array = Object.keys($scope.periode.debitur).map((item) => $scope.periode.debitur[item]);
 				KriteriaService.get().then(
 					(x) => {
 						var dd = d;
