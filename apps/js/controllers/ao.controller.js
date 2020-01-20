@@ -152,16 +152,18 @@ function AoPeriodeController($scope, PeriodeService) {
 
 function Aoperiodedetailcontroller($scope, $stateParams, DebiturService, KriteriaService, PeriodeService) {
 	PeriodeService.get().then((x) => {
-		$scope.periode = x.find((x) => x.periode === $stateParams.id);
+		$scope.periode = x.find((z) => z.idperiode == $stateParams.id);
 		$scope.dataDebitur = [];
 		DebiturService.get().then(
 			(d) => {
+				var array = Object.keys($scope.periode.debitur).map((item) => $scope.periode.debitur[item]);
 				KriteriaService.get().then(
 					(x) => {
 						var dd = d;
 						dd.forEach((debitur) => {
 							var found = false;
-							var res = $scope.periode.debitur.find((m) => m.iddebitur == debitur.iddebitur);
+
+							var res = array.find((m) => m.iddebitur == debitur.iddebitur);
 							if (!res) {
 								debitur.kriteria = x;
 								debitur.kriteria.forEach((k) => {
