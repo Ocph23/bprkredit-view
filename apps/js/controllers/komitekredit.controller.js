@@ -140,8 +140,8 @@ function KomiteKriteraController($scope, KriteriaService, swangular, message) {
 		}
 	};
 
-	$scope.deleteSubCriteria = function(data) {
-		KriteriaService.removeSubCriteria(data).then((x) => {});
+	$scope.deleteSubCriteria = function(data, params) {
+		KriteriaService.removeSubCriteria(data, params).then((x) => {});
 	};
 }
 

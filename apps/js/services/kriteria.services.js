@@ -171,7 +171,7 @@ function KriteriaService(AuthService, $q, $http, message, helperServices) {
 		return def.promise;
 	}
 
-	function removeSubCriteria(params) {
+	function removeSubCriteria(data, params) {
 		var def = $q.defer();
 		try {
 			message
@@ -182,8 +182,8 @@ function KriteriaService(AuthService, $q, $http, message, helperServices) {
 				)
 				.then(
 					(x) => {
-						var index = service.datas.indexOf(params);
-						service.datas.splice(index, 1);
+						var index = data.subKriteria.indexOf(params);
+						data.subKriteria.splice(index, 1);
 						def.resolve(true);
 					},
 					(err) => {
